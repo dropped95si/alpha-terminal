@@ -22,4 +22,11 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
-        run: python main.py
+        run: cd market_ai_kit
+          python -m scanner.run --config config.yaml
+          cd ..
+          test -f market_ai_kit/output/full_scan_payload.json
+          curl -sS -X POST "$INGEST_URL" \
+            -H "Content-Type: application/json" \
+            -H "x-ingest-token: $INGEST_TOKEN" \
+            --data-binary @market_ai_kit/output/full_scan_payload.json
