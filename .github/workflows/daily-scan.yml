@@ -1,0 +1,25 @@
+name: Alpha Terminal Daily Scan
+on:
+  schedule:
+    - cron: '30 13 * * 1-5' # 8:30 AM EST
+  workflow_dispatch:
+jobs:
+  run-alpha:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+      - name: Install
+        run: pip install -r requirements.txt
+      - name: Execute
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+          ALPACA_API_BASE_URL: https://paper-api.alpaca.markets
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
+        run: python main.py

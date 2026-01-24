@@ -1,0 +1,11 @@
+{
+  "RUN_WINDOWS.ps1": "76f9f832cf70a53c413913546159275ad0b1f571326a730324ede6fbf6d07763",
+  "SELFTEST_WINDOWS.ps1": "93e980e669ca149ff1c173189c304131069e807857c380c8eae4ddc83ce84fdc",
+  "config.yaml": "bd44bc5b6ac88125635824ba84b48a4609d264c6673e105888bb5de486b85f95",
+  "scanner/run.py": "d6253bae13176666d47371defd5a216404e99207ecb08b6a448e68383e41d020",
+  "scanner/indicators.py": "8a0c2122a6b3f34de4492b3b5e75cd8a18040a28eb298609067901ea95fea133",
+  "scanner/data.py": "db8a26774e10d2f11209e0feee12a5f3e4bb20edc91ab82dd6eb90f03cdafb06",
+  "scanner/auto_tune.py": "e47f5821b035e38d33a3585981490e29038626a5cccb873ed527772af1e4c514",
+  "scanner/report.py": "90f674fd63e6d0cad4ee55d9a8f68373e535bf41c7ea48083b9d1b4699a41a82",
+  "requirements.txt": "4b213bb6fcc321e2fe831f94a07f3ac9fdc133baffd99c0f5a13c386f2bf6c75"
+}

@@ -1,0 +1,1798 @@
+{
+  "as_of": "2026-01-19T21:31:30.523260Z",
+  "auto_thresholds": {
+    "vol_z_min": 0.55,
+    "near_breakout_pct": 0.995,
+    "fv_max_extension_atr": 0.75,
+    "ready_confirm_closes": 1
+  },
+  "profiles": [
+    {
+      "ticker": "SPY",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 11,
+            "samples": 11,
+            "win_rate": 1.0,
+            "avg_return": 0.053288922753665376,
+            "expectancy": 0.053288922753665376
+          },
+          "h90": null,
+          "score": 0.053288922753665376
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 12,
+            "samples": 10,
+            "win_rate": 1.0,
+            "avg_return": 0.044620039275534484,
+            "expectancy": 0.044620039275534484
+          },
+          "h90": null,
+          "score": 0.044620039275534484
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 6,
+            "samples": 6,
+            "win_rate": 1.0,
+            "avg_return": 0.03411768647458091,
+            "expectancy": 0.03411768647458091
+          },
+          "h90": {
+            "signals": 6,
+            "samples": 5,
+            "win_rate": 0.8,
+            "avg_return": 0.05725453449443831,
+            "expectancy": 0.05725453449443831
+          },
+          "score": 0.04337242568252387
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 25,
+            "samples": 18,
+            "win_rate": 1.0,
+            "avg_return": 0.034802985092927834,
+            "expectancy": 0.034802985092927834
+          },
+          "h90": null,
+          "score": 0.034802985092927834
+        },
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 19,
+            "samples": 10,
+            "win_rate": 1.0,
+            "avg_return": 0.025553915969019812,
+            "expectancy": 0.025553915969019812
+          },
+          "h90": null,
+          "score": 0.025553915969019812
+        }
+      ],
+      "rules_tested": 5
+    },
+    {
+      "ticker": "QQQ",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 5,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.0863244657633269,
+            "expectancy": 0.0863244657633269
+          },
+          "h90": {
+            "signals": 5,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.1155247114011119,
+            "expectancy": 0.1155247114011119
+          },
+          "score": 0.0980045640184409
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 13,
+            "samples": 13,
+            "win_rate": 1.0,
+            "avg_return": 0.06426701457773511,
+            "expectancy": 0.06426701457773511
+          },
+          "h90": null,
+          "score": 0.06426701457773511
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 7,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.05580300768550837,
+            "expectancy": 0.05580300768550837
+          },
+          "h90": null,
+          "score": 0.05580300768550837
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 23,
+            "samples": 14,
+            "win_rate": 1.0,
+            "avg_return": 0.030850585728922426,
+            "expectancy": 0.030850585728922426
+          },
+          "h90": null,
+          "score": 0.030850585728922426
+        },
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 17,
+            "samples": 7,
+            "win_rate": 1.0,
+            "avg_return": 0.016363392929001717,
+            "expectancy": 0.016363392929001717
+          },
+          "h90": null,
+          "score": 0.016363392929001717
+        }
+      ],
+      "rules_tested": 5
+    },
+    {
+      "ticker": "IWM",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 16,
+            "samples": 5,
+            "win_rate": 0.8,
+            "avg_return": 0.04245133558443448,
+            "expectancy": 0.04245133558443448
+          },
+          "h90": null,
+          "score": 0.04245133558443448
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 8,
+            "samples": 8,
+            "win_rate": 0.625,
+            "avg_return": 0.015231632698904443,
+            "expectancy": 0.015231632698904443
+          },
+          "h90": {
+            "signals": 8,
+            "samples": 8,
+            "win_rate": 0.875,
+            "avg_return": 0.04633693937001036,
+            "expectancy": 0.04633693937001036
+          },
+          "score": 0.02767375536734681
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 20,
+            "samples": 17,
+            "win_rate": 0.4117647058823529,
+            "avg_return": -0.015572117377329494,
+            "expectancy": -0.015572117377329494
+          },
+          "h90": null,
+          "score": -0.015572117377329494
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 24,
+            "samples": 19,
+            "win_rate": 0.5789473684210527,
+            "avg_return": -0.02326474313121835,
+            "expectancy": -0.02326474313121835
+          },
+          "h90": null,
+          "score": -0.02326474313121835
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 28,
+            "samples": 28,
+            "win_rate": 0.32142857142857145,
+            "avg_return": -0.04730125953820686,
+            "expectancy": -0.04730125953820686
+          },
+          "h90": null,
+          "score": -0.04730125953820686
+        }
+      ],
+      "rules_tested": 5
+    },
+    {
+      "ticker": "XLK",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 6,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.08439498151333273,
+            "expectancy": 0.08439498151333273
+          },
+          "h90": null,
+          "score": 0.08439498151333273
+        },
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 6,
+            "samples": 6,
+            "win_rate": 0.6666666666666666,
+            "avg_return": 0.05019218308932991,
+            "expectancy": 0.05019218308932991
+          },
+          "h90": {
+            "signals": 6,
+            "samples": 6,
+            "win_rate": 1.0,
+            "avg_return": 0.09422565169224646,
+            "expectancy": 0.09422565169224646
+          },
+          "score": 0.06780557053049653
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 8,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.03181675758694147,
+            "expectancy": 0.03181675758694147
+          },
+          "h90": null,
+          "score": 0.03181675758694147
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 17,
+            "samples": 7,
+            "win_rate": 1.0,
+            "avg_return": 0.027919760219518093,
+            "expectancy": 0.027919760219518093
+          },
+          "h90": null,
+          "score": 0.027919760219518093
+        },
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 21,
+            "samples": 5,
+            "win_rate": 0.8,
+            "avg_return": 0.005281343939382244,
+            "expectancy": 0.005281343939382244
+          },
+          "h90": null,
+          "score": 0.005281343939382244
+        }
+      ],
+      "rules_tested": 5
+    },
+    {
+      "ticker": "XLF",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 10,
+            "samples": 9,
+            "win_rate": 0.7777777777777778,
+            "avg_return": 0.020035870090005355,
+            "expectancy": 0.020035870090005355
+          },
+          "h90": {
+            "signals": 10,
+            "samples": 9,
+            "win_rate": 0.8888888888888888,
+            "avg_return": 0.0798737086317675,
+            "expectancy": 0.0798737086317675
+          },
+          "score": 0.043971005506710216
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 41,
+            "samples": 28,
+            "win_rate": 0.75,
+            "avg_return": 0.013142646251419091,
+            "expectancy": 0.013142646251419091
+          },
+          "h90": null,
+          "score": 0.013142646251419091
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 39,
+            "samples": 29,
+            "win_rate": 0.6551724137931034,
+            "avg_return": 0.00839777023988567,
+            "expectancy": 0.00839777023988567
+          },
+          "h90": null,
+          "score": 0.00839777023988567
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 16,
+            "samples": 11,
+            "win_rate": 0.6363636363636364,
+            "avg_return": 0.003824524496385262,
+            "expectancy": 0.003824524496385262
+          },
+          "h90": null,
+          "score": 0.003824524496385262
+        }
+      ],
+      "rules_tested": 4
+    },
+    {
+      "ticker": "XLV",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 46,
+            "samples": 46,
+            "win_rate": 0.8260869565217391,
+            "avg_return": 0.05950715092470321,
+            "expectancy": 0.05950715092470321
+          },
+          "h90": null,
+          "score": 0.05950715092470321
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 36,
+            "samples": 36,
+            "win_rate": 0.75,
+            "avg_return": 0.03467315478376618,
+            "expectancy": 0.03467315478376618
+          },
+          "h90": null,
+          "score": 0.03467315478376618
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 7,
+            "samples": 5,
+            "win_rate": 0.6,
+            "avg_return": 0.011767214130675097,
+            "expectancy": 0.011767214130675097
+          },
+          "h90": null,
+          "score": 0.007060328478405058
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 87,
+            "samples": 78,
+            "win_rate": 0.5897435897435898,
+            "avg_return": 0.0012589657826613026,
+            "expectancy": 0.0012589657826613026
+          },
+          "h90": null,
+          "score": 0.0012589657826613026
+        },
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 32,
+            "samples": 31,
+            "win_rate": 0.3225806451612903,
+            "avg_return": -0.027111121978126713,
+            "expectancy": -0.027111121978126713
+          },
+          "h90": null,
+          "score": -0.027111121978126713
+        }
+      ],
+      "rules_tested": 5
+    },
+    {
+      "ticker": "XLE",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 68,
+            "samples": 57,
+            "win_rate": 0.5789473684210527,
+            "avg_return": -0.0023067307327639913,
+            "expectancy": -0.0023067307327639913
+          },
+          "h90": null,
+          "score": -0.0023067307327639913
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 79,
+            "samples": 65,
+            "win_rate": 0.4307692307692308,
+            "avg_return": -0.015274711923894466,
+            "expectancy": -0.015274711923894466
+          },
+          "h90": null,
+          "score": -0.015274711923894466
+        },
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 10,
+            "samples": 9,
+            "win_rate": 0.3333333333333333,
+            "avg_return": -0.024457294699941092,
+            "expectancy": -0.024457294699941092
+          },
+          "h90": {
+            "signals": 10,
+            "samples": 9,
+            "win_rate": 0.4444444444444444,
+            "avg_return": -0.01387833798791211,
+            "expectancy": -0.01387833798791211
+          },
+          "score": -0.020225712015129498
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 61,
+            "samples": 49,
+            "win_rate": 0.10204081632653061,
+            "avg_return": -0.03888091609803511,
+            "expectancy": -0.03888091609803511
+          },
+          "h90": null,
+          "score": -0.03888091609803511
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 9,
+            "samples": 7,
+            "win_rate": 0.0,
+            "avg_return": -0.0330175349958788,
+            "expectancy": -0.0330175349958788
+          },
+          "h90": {
+            "signals": 9,
+            "samples": 6,
+            "win_rate": 0.16666666666666666,
+            "avg_return": -0.05516632767169377,
+            "expectancy": -0.05516632767169377
+          },
+          "score": -0.04187705206620479
+        }
+      ],
+      "rules_tested": 6
+    },
+    {
+      "ticker": "XLI",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 12,
+            "samples": 9,
+            "win_rate": 0.5555555555555556,
+            "avg_return": 0.021608292315182884,
+            "expectancy": 0.021608292315182884
+          },
+          "h90": {
+            "signals": 12,
+            "samples": 9,
+            "win_rate": 0.6666666666666666,
+            "avg_return": 0.029100536503142642,
+            "expectancy": 0.029100536503142642
+          },
+          "score": 0.024605189990366788
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 45,
+            "samples": 32,
+            "win_rate": 0.71875,
+            "avg_return": 0.01748167485751758,
+            "expectancy": 0.01748167485751758
+          },
+          "h90": null,
+          "score": 0.01748167485751758
+        }
+      ],
+      "rules_tested": 2
+    },
+    {
+      "ticker": "XLY",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 6,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.06589236563995012,
+            "expectancy": 0.06589236563995012
+          },
+          "h90": {
+            "signals": 6,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.1181457772237839,
+            "expectancy": 0.1181457772237839
+          },
+          "score": 0.08679373027348364
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 7,
+            "samples": 7,
+            "win_rate": 0.8571428571428571,
+            "avg_return": 0.023183802304316554,
+            "expectancy": 0.023183802304316554
+          },
+          "h90": {
+            "signals": 7,
+            "samples": 7,
+            "win_rate": 0.2857142857142857,
+            "avg_return": -0.04134306916982059,
+            "expectancy": -0.04134306916982059
+          },
+          "score": -0.0026269462853383066
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 24,
+            "samples": 21,
+            "win_rate": 0.47619047619047616,
+            "avg_return": -0.020599680620276263,
+            "expectancy": -0.020599680620276263
+          },
+          "h90": null,
+          "score": -0.020599680620276263
+        },
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 30,
+            "samples": 11,
+            "win_rate": 0.6363636363636364,
+            "avg_return": -0.02335030285455909,
+            "expectancy": -0.02335030285455909
+          },
+          "h90": null,
+          "score": -0.02335030285455909
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 27,
+            "samples": 21,
+            "win_rate": 0.5238095238095238,
+            "avg_return": -0.037258093981297744,
+            "expectancy": -0.037258093981297744
+          },
+          "h90": null,
+          "score": -0.037258093981297744
+        }
+      ],
+      "rules_tested": 6
+    },
+    {
+      "ticker": "XLP",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 77,
+            "samples": 59,
+            "win_rate": 0.8983050847457628,
+            "avg_return": 0.04047276228257609,
+            "expectancy": 0.04047276228257609
+          },
+          "h90": null,
+          "score": 0.04047276228257609
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 58,
+            "samples": 42,
+            "win_rate": 0.9761904761904762,
+            "avg_return": 0.020828345953462096,
+            "expectancy": 0.020828345953462096
+          },
+          "h90": null,
+          "score": 0.020828345953462096
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 67,
+            "samples": 62,
+            "win_rate": 0.43548387096774194,
+            "avg_return": -0.004230484538140298,
+            "expectancy": -0.004230484538140298
+          },
+          "h90": null,
+          "score": -0.004230484538140298
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 10,
+            "samples": 7,
+            "win_rate": 0.42857142857142855,
+            "avg_return": -0.004746019562604564,
+            "expectancy": -0.004746019562604564
+          },
+          "h90": {
+            "signals": 10,
+            "samples": 7,
+            "win_rate": 0.42857142857142855,
+            "avg_return": -0.017966654282744212,
+            "expectancy": -0.017966654282744212
+          },
+          "score": -0.010034273450660424
+        },
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 9,
+            "samples": 7,
+            "win_rate": 0.2857142857142857,
+            "avg_return": -0.016369929063565984,
+            "expectancy": -0.016369929063565984
+          },
+          "h90": {
+            "signals": 9,
+            "samples": 7,
+            "win_rate": 0.2857142857142857,
+            "avg_return": -0.012849256413435817,
+            "expectancy": -0.012849256413435817
+          },
+          "score": -0.014961660003513916
+        }
+      ],
+      "rules_tested": 6
+    },
+    {
+      "ticker": "SMH",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 13,
+            "samples": 10,
+            "win_rate": 0.9,
+            "avg_return": 0.08708771091588872,
+            "expectancy": 0.08708771091588872
+          },
+          "h90": {
+            "signals": 13,
+            "samples": 8,
+            "win_rate": 1.0,
+            "avg_return": 0.17687634442920183,
+            "expectancy": 0.17687634442920183
+          },
+          "score": 0.12300316432121397
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 7,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.12266651503021686,
+            "expectancy": 0.12266651503021686
+          },
+          "h90": null,
+          "score": 0.12266651503021686
+        },
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 8,
+            "samples": 8,
+            "win_rate": 0.375,
+            "avg_return": -0.0008346552536299123,
+            "expectancy": -0.0008346552536299123
+          },
+          "h90": {
+            "signals": 8,
+            "samples": 8,
+            "win_rate": 0.5,
+            "avg_return": 0.03876021909144463,
+            "expectancy": 0.03876021909144463
+          },
+          "score": 0.015003294484399906
+        }
+      ],
+      "rules_tested": 3
+    },
+    {
+      "ticker": "SOXX",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 6,
+            "samples": 6,
+            "win_rate": 0.5,
+            "avg_return": 0.01466577447172085,
+            "expectancy": 0.01466577447172085
+          },
+          "h90": {
+            "signals": 6,
+            "samples": 6,
+            "win_rate": 0.6666666666666666,
+            "avg_return": 0.08771243024663213,
+            "expectancy": 0.08771243024663213
+          },
+          "score": 0.043884436781685354
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 6,
+            "samples": 6,
+            "win_rate": 0.8333333333333334,
+            "avg_return": 0.027884794606414336,
+            "expectancy": 0.027884794606414336
+          },
+          "h90": null,
+          "score": 0.0167308767638486
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 10,
+            "samples": 10,
+            "win_rate": 0.3,
+            "avg_return": -0.01714192631390221,
+            "expectancy": -0.01714192631390221
+          },
+          "h90": null,
+          "score": -0.01714192631390221
+        }
+      ],
+      "rules_tested": 3
+    },
+    {
+      "ticker": "VWO",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 13,
+            "samples": 13,
+            "win_rate": 1.0,
+            "avg_return": 0.058565350736344716,
+            "expectancy": 0.058565350736344716
+          },
+          "h90": null,
+          "score": 0.058565350736344716
+        },
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 7,
+            "samples": 6,
+            "win_rate": 0.8333333333333334,
+            "avg_return": 0.03342591629593814,
+            "expectancy": 0.03342591629593814
+          },
+          "h90": {
+            "signals": 7,
+            "samples": 6,
+            "win_rate": 0.8333333333333334,
+            "avg_return": 0.05213672355328308,
+            "expectancy": 0.05213672355328308
+          },
+          "score": 0.04091023919887612
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 8,
+            "samples": 8,
+            "win_rate": 0.5,
+            "avg_return": 0.007002417471081601,
+            "expectancy": 0.007002417471081601
+          },
+          "h90": {
+            "signals": 8,
+            "samples": 6,
+            "win_rate": 0.6666666666666666,
+            "avg_return": 0.03340404104927323,
+            "expectancy": 0.03340404104927323
+          },
+          "score": 0.017563066902358253
+        },
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 34,
+            "samples": 14,
+            "win_rate": 0.35714285714285715,
+            "avg_return": 0.0025339074956641306,
+            "expectancy": 0.0025339074956641306
+          },
+          "h90": null,
+          "score": 0.0025339074956641306
+        }
+      ],
+      "rules_tested": 4
+    },
+    {
+      "ticker": "IEMG",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 8,
+            "samples": 8,
+            "win_rate": 1.0,
+            "avg_return": 0.07039545482155973,
+            "expectancy": 0.07039545482155973
+          },
+          "h90": null,
+          "score": 0.07039545482155973
+        },
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 5,
+            "samples": 5,
+            "win_rate": 0.8,
+            "avg_return": 0.03702438608396721,
+            "expectancy": 0.03702438608396721
+          },
+          "h90": {
+            "signals": 5,
+            "samples": 5,
+            "win_rate": 0.8,
+            "avg_return": 0.06600995824739948,
+            "expectancy": 0.06600995824739948
+          },
+          "score": 0.04861861494934012
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 17,
+            "samples": 12,
+            "win_rate": 0.75,
+            "avg_return": 0.01866407834108026,
+            "expectancy": 0.01866407834108026
+          },
+          "h90": null,
+          "score": 0.01866407834108026
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 7,
+            "samples": 5,
+            "win_rate": 0.6,
+            "avg_return": 0.014555348020551872,
+            "expectancy": 0.014555348020551872
+          },
+          "h90": null,
+          "score": 0.008733208812331123
+        }
+      ],
+      "rules_tested": 4
+    },
+    {
+      "ticker": "INDA",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 7,
+            "samples": 6,
+            "win_rate": 0.5,
+            "avg_return": 0.010707835766887145,
+            "expectancy": 0.010707835766887145
+          },
+          "h90": {
+            "signals": 7,
+            "samples": 5,
+            "win_rate": 0.6,
+            "avg_return": 0.02280916537678237,
+            "expectancy": 0.02280916537678237
+          },
+          "score": 0.015548367610845236
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 54,
+            "samples": 43,
+            "win_rate": 0.6976744186046512,
+            "avg_return": 0.01428827625992335,
+            "expectancy": 0.01428827625992335
+          },
+          "h90": null,
+          "score": 0.01428827625992335
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 56,
+            "samples": 42,
+            "win_rate": 0.40476190476190477,
+            "avg_return": -0.006933277199931571,
+            "expectancy": -0.006933277199931571
+          },
+          "h90": null,
+          "score": -0.006933277199931571
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 61,
+            "samples": 37,
+            "win_rate": 0.24324324324324326,
+            "avg_return": -0.009287812409548967,
+            "expectancy": -0.009287812409548967
+          },
+          "h90": null,
+          "score": -0.009287812409548967
+        },
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 62,
+            "samples": 35,
+            "win_rate": 0.17142857142857143,
+            "avg_return": -0.027855944798740494,
+            "expectancy": -0.027855944798740494
+          },
+          "h90": null,
+          "score": -0.027855944798740494
+        }
+      ],
+      "rules_tested": 5
+    },
+    {
+      "ticker": "NVDA",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 12,
+            "samples": 10,
+            "win_rate": 1.0,
+            "avg_return": 0.168314415983332,
+            "expectancy": 0.168314415983332
+          },
+          "h90": {
+            "signals": 12,
+            "samples": 9,
+            "win_rate": 1.0,
+            "avg_return": 0.4149034190399024,
+            "expectancy": 0.4149034190399024
+          },
+          "score": 0.2669500172059602
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 22,
+            "samples": 17,
+            "win_rate": 0.7647058823529411,
+            "avg_return": 0.041283936566358176,
+            "expectancy": 0.041283936566358176
+          },
+          "h90": null,
+          "score": 0.041283936566358176
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 19,
+            "samples": 6,
+            "win_rate": 1.0,
+            "avg_return": 0.01847441634864792,
+            "expectancy": 0.01847441634864792
+          },
+          "h90": null,
+          "score": 0.01847441634864792
+        }
+      ],
+      "rules_tested": 3
+    },
+    {
+      "ticker": "AVGO",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 11,
+            "samples": 11,
+            "win_rate": 0.5454545454545454,
+            "avg_return": -0.002240135668304449,
+            "expectancy": -0.002240135668304449
+          },
+          "h90": {
+            "signals": 11,
+            "samples": 10,
+            "win_rate": 0.7,
+            "avg_return": 0.09642201789811464,
+            "expectancy": 0.09642201789811464
+          },
+          "score": 0.03722472575826319
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 16,
+            "samples": 7,
+            "win_rate": 0.7142857142857143,
+            "avg_return": 0.03406155291515357,
+            "expectancy": 0.03406155291515357
+          },
+          "h90": null,
+          "score": 0.03406155291515357
+        }
+      ],
+      "rules_tested": 2
+    },
+    {
+      "ticker": "MSFT",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 17,
+            "samples": 6,
+            "win_rate": 1.0,
+            "avg_return": 0.056987570057778915,
+            "expectancy": 0.056987570057778915
+          },
+          "h90": null,
+          "score": 0.056987570057778915
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 19,
+            "samples": 15,
+            "win_rate": 0.5333333333333333,
+            "avg_return": 0.003494993595359134,
+            "expectancy": 0.003494993595359134
+          },
+          "h90": null,
+          "score": 0.003494993595359134
+        },
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 6,
+            "samples": 6,
+            "win_rate": 0.5,
+            "avg_return": -0.0006161194078946886,
+            "expectancy": -0.0006161194078946886
+          },
+          "h90": {
+            "signals": 6,
+            "samples": 6,
+            "win_rate": 0.5,
+            "avg_return": -0.002370573450284167,
+            "expectancy": -0.002370573450284167
+          },
+          "score": -0.00131790102485048
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 37,
+            "samples": 33,
+            "win_rate": 0.30303030303030304,
+            "avg_return": -0.03525601153864563,
+            "expectancy": -0.03525601153864563
+          },
+          "h90": null,
+          "score": -0.03525601153864563
+        },
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 16,
+            "samples": 11,
+            "win_rate": 0.09090909090909091,
+            "avg_return": -0.046828475164068746,
+            "expectancy": -0.046828475164068746
+          },
+          "h90": null,
+          "score": -0.046828475164068746
+        }
+      ],
+      "rules_tested": 5
+    },
+    {
+      "ticker": "AMZN",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 9,
+            "samples": 7,
+            "win_rate": 0.42857142857142855,
+            "avg_return": 0.01443705670472349,
+            "expectancy": 0.01443705670472349
+          },
+          "h90": {
+            "signals": 9,
+            "samples": 7,
+            "win_rate": 0.42857142857142855,
+            "avg_return": 0.006178298975227211,
+            "expectancy": 0.006178298975227211
+          },
+          "score": 0.011133553612924979
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 37,
+            "samples": 30,
+            "win_rate": 0.4666666666666667,
+            "avg_return": -0.019233410674937258,
+            "expectancy": -0.019233410674937258
+          },
+          "h90": null,
+          "score": -0.019233410674937258
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 37,
+            "samples": 23,
+            "win_rate": 0.13043478260869565,
+            "avg_return": -0.06597025734098827,
+            "expectancy": -0.06597025734098827
+          },
+          "h90": null,
+          "score": -0.06597025734098827
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 13,
+            "samples": 9,
+            "win_rate": 0.0,
+            "avg_return": -0.17365223793995238,
+            "expectancy": -0.17365223793995238
+          },
+          "h90": null,
+          "score": -0.17365223793995238
+        }
+      ],
+      "rules_tested": 4
+    },
+    {
+      "ticker": "GOOGL",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 8,
+            "samples": 8,
+            "win_rate": 1.0,
+            "avg_return": 0.275988353662887,
+            "expectancy": 0.275988353662887
+          },
+          "h90": null,
+          "score": 0.275988353662887
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 16,
+            "samples": 11,
+            "win_rate": 0.6363636363636364,
+            "avg_return": 0.09474005298291527,
+            "expectancy": 0.09474005298291527
+          },
+          "h90": {
+            "signals": 16,
+            "samples": 10,
+            "win_rate": 0.3,
+            "avg_return": 0.05875049594437759,
+            "expectancy": 0.05875049594437759
+          },
+          "score": 0.0803442301675002
+        }
+      ],
+      "rules_tested": 2
+    },
+    {
+      "ticker": "META",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 18,
+            "samples": 14,
+            "win_rate": 0.7142857142857143,
+            "avg_return": 0.07918766624867543,
+            "expectancy": 0.07918766624867543
+          },
+          "h90": null,
+          "score": 0.07918766624867543
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 14,
+            "samples": 14,
+            "win_rate": 0.6428571428571429,
+            "avg_return": 0.0007755824520375392,
+            "expectancy": 0.0007755824520375392
+          },
+          "h90": null,
+          "score": 0.0007755824520375392
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 10,
+            "samples": 10,
+            "win_rate": 0.4,
+            "avg_return": -0.07852926673138509,
+            "expectancy": -0.07852926673138509
+          },
+          "h90": {
+            "signals": 10,
+            "samples": 10,
+            "win_rate": 0.7,
+            "avg_return": 0.0031414634791847697,
+            "expectancy": 0.0031414634791847697
+          },
+          "score": -0.045860974647157146
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 11,
+            "samples": 6,
+            "win_rate": 0.3333333333333333,
+            "avg_return": -0.05030169875989954,
+            "expectancy": -0.05030169875989954
+          },
+          "h90": null,
+          "score": -0.05030169875989954
+        },
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 22,
+            "samples": 22,
+            "win_rate": 0.2727272727272727,
+            "avg_return": -0.06325171150372014,
+            "expectancy": -0.06325171150372014
+          },
+          "h90": null,
+          "score": -0.06325171150372014
+        }
+      ],
+      "rules_tested": 5
+    },
+    {
+      "ticker": "AAPL",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 8,
+            "samples": 8,
+            "win_rate": 0.75,
+            "avg_return": 0.06698467736483736,
+            "expectancy": 0.06698467736483736
+          },
+          "h90": {
+            "signals": 8,
+            "samples": 5,
+            "win_rate": 0.8,
+            "avg_return": 0.09379244869685141,
+            "expectancy": 0.09379244869685141
+          },
+          "score": 0.07770778589764299
+        },
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 18,
+            "samples": 11,
+            "win_rate": 0.6363636363636364,
+            "avg_return": -0.0011169564710672632,
+            "expectancy": -0.0011169564710672632
+          },
+          "h90": null,
+          "score": -0.0011169564710672632
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 28,
+            "samples": 28,
+            "win_rate": 0.6428571428571429,
+            "avg_return": -0.0023932564519398964,
+            "expectancy": -0.0023932564519398964
+          },
+          "h90": null,
+          "score": -0.0023932564519398964
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 22,
+            "samples": 22,
+            "win_rate": 0.4090909090909091,
+            "avg_return": -0.027113077721554902,
+            "expectancy": -0.027113077721554902
+          },
+          "h90": null,
+          "score": -0.027113077721554902
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 16,
+            "samples": 16,
+            "win_rate": 0.375,
+            "avg_return": -0.07246787048316698,
+            "expectancy": -0.07246787048316698
+          },
+          "h90": null,
+          "score": -0.07246787048316698
+        }
+      ],
+      "rules_tested": 5
+    },
+    {
+      "ticker": "ANET",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 16,
+            "samples": 16,
+            "win_rate": 0.5,
+            "avg_return": 0.017171280246445812,
+            "expectancy": 0.017171280246445812
+          },
+          "h90": {
+            "signals": 16,
+            "samples": 14,
+            "win_rate": 0.6428571428571429,
+            "avg_return": 0.059740105209332525,
+            "expectancy": 0.059740105209332525
+          },
+          "score": 0.0341988102316005
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 11,
+            "samples": 6,
+            "win_rate": 0.16666666666666666,
+            "avg_return": -0.01178358266317886,
+            "expectancy": -0.01178358266317886
+          },
+          "h90": null,
+          "score": -0.01178358266317886
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 12,
+            "samples": 11,
+            "win_rate": 0.0,
+            "avg_return": -0.09393771613616536,
+            "expectancy": -0.09393771613616536
+          },
+          "h90": null,
+          "score": -0.09393771613616536
+        }
+      ],
+      "rules_tested": 3
+    },
+    {
+      "ticker": "AMD",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 14,
+            "samples": 14,
+            "win_rate": 0.6428571428571429,
+            "avg_return": 0.12818020934421365,
+            "expectancy": 0.12818020934421365
+          },
+          "h90": {
+            "signals": 14,
+            "samples": 12,
+            "win_rate": 0.6666666666666666,
+            "avg_return": 0.2841314576914921,
+            "expectancy": 0.2841314576914921
+          },
+          "score": 0.19056070868312502
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 20,
+            "samples": 20,
+            "win_rate": 0.25,
+            "avg_return": 0.011718547696116032,
+            "expectancy": 0.011718547696116032
+          },
+          "h90": null,
+          "score": 0.011718547696116032
+        }
+      ],
+      "rules_tested": 2
+    },
+    {
+      "ticker": "ASML",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 5,
+            "samples": 5,
+            "win_rate": 0.4,
+            "avg_return": 0.10877175715352345,
+            "expectancy": 0.10877175715352345
+          },
+          "h90": {
+            "signals": 5,
+            "samples": 5,
+            "win_rate": 0.6,
+            "avg_return": 0.24962437860705985,
+            "expectancy": 0.24962437860705985
+          },
+          "score": 0.16511280573493803
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 15,
+            "samples": 8,
+            "win_rate": 0.625,
+            "avg_return": 0.07173958584714446,
+            "expectancy": 0.07173958584714446
+          },
+          "h90": {
+            "signals": 15,
+            "samples": 6,
+            "win_rate": 0.6666666666666666,
+            "avg_return": 0.11600372816864658,
+            "expectancy": 0.11600372816864658
+          },
+          "score": 0.08944524277574531
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 19,
+            "samples": 18,
+            "win_rate": 0.7222222222222222,
+            "avg_return": 0.0393154227715163,
+            "expectancy": 0.0393154227715163
+          },
+          "h90": null,
+          "score": 0.0393154227715163
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 10,
+            "samples": 10,
+            "win_rate": 0.2,
+            "avg_return": -0.0942290076799787,
+            "expectancy": -0.0942290076799787
+          },
+          "h90": null,
+          "score": -0.0942290076799787
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 17,
+            "samples": 9,
+            "win_rate": 0.3333333333333333,
+            "avg_return": -0.11714219949546721,
+            "expectancy": -0.11714219949546721
+          },
+          "h90": null,
+          "score": -0.11714219949546721
+        }
+      ],
+      "rules_tested": 5
+    },
+    {
+      "ticker": "TSM",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 19,
+            "samples": 16,
+            "win_rate": 0.625,
+            "avg_return": 0.024630814580507122,
+            "expectancy": 0.024630814580507122
+          },
+          "h90": {
+            "signals": 19,
+            "samples": 12,
+            "win_rate": 0.8333333333333334,
+            "avg_return": 0.1439475257802198,
+            "expectancy": 0.1439475257802198
+          },
+          "score": 0.0723574990603922
+        }
+      ],
+      "rules_tested": 1
+    },
+    {
+      "ticker": "TCEHY",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 8,
+            "samples": 7,
+            "win_rate": 0.8571428571428571,
+            "avg_return": 0.15322245458091074,
+            "expectancy": 0.15322245458091074
+          },
+          "h90": {
+            "signals": 8,
+            "samples": 7,
+            "win_rate": 0.8571428571428571,
+            "avg_return": 0.14976781234794023,
+            "expectancy": 0.14976781234794023
+          },
+          "score": 0.15184059768772254
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 7,
+            "samples": 6,
+            "win_rate": 1.0,
+            "avg_return": 0.07483296490208076,
+            "expectancy": 0.07483296490208076
+          },
+          "h90": null,
+          "score": 0.07483296490208076
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 17,
+            "samples": 17,
+            "win_rate": 0.6470588235294118,
+            "avg_return": 0.04272063460050827,
+            "expectancy": 0.04272063460050827
+          },
+          "h90": {
+            "signals": 17,
+            "samples": 16,
+            "win_rate": 0.8125,
+            "avg_return": 0.05542736924058711,
+            "expectancy": 0.05542736924058711
+          },
+          "score": 0.047803328456539805
+        },
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 24,
+            "samples": 7,
+            "win_rate": 0.14285714285714285,
+            "avg_return": -0.014860239940283404,
+            "expectancy": -0.014860239940283404
+          },
+          "h90": null,
+          "score": -0.014860239940283404
+        }
+      ],
+      "rules_tested": 4
+    },
+    {
+      "ticker": "BABA",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 6,
+            "samples": 5,
+            "win_rate": 0.8,
+            "avg_return": 0.1534535632948105,
+            "expectancy": 0.1534535632948105
+          },
+          "h90": {
+            "signals": 6,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.17883356488226626,
+            "expectancy": 0.17883356488226626
+          },
+          "score": 0.1636055639297928
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 21,
+            "samples": 21,
+            "win_rate": 0.38095238095238093,
+            "avg_return": -0.023712414227565475,
+            "expectancy": -0.023712414227565475
+          },
+          "h90": {
+            "signals": 21,
+            "samples": 19,
+            "win_rate": 0.7894736842105263,
+            "avg_return": 0.05331853073821602,
+            "expectancy": 0.05331853073821602
+          },
+          "score": 0.007099963758747127
+        },
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 11,
+            "samples": 5,
+            "win_rate": 0.4,
+            "avg_return": -0.04136048427017591,
+            "expectancy": -0.04136048427017591
+          },
+          "h90": null,
+          "score": -0.04136048427017591
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 11,
+            "samples": 11,
+            "win_rate": 0.18181818181818182,
+            "avg_return": -0.0794198511433009,
+            "expectancy": -0.0794198511433009
+          },
+          "h90": null,
+          "score": -0.0794198511433009
+        }
+      ],
+      "rules_tested": 4
+    },
+    {
+      "ticker": "JD",
+      "as_of": "2026-01-19T21:31:30.523260Z",
+      "top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 20,
+            "samples": 16,
+            "win_rate": 0.5,
+            "avg_return": -0.002124979272834046,
+            "expectancy": -0.002124979272834046
+          },
+          "h90": null,
+          "score": -0.002124979272834046
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 27,
+            "samples": 24,
+            "win_rate": 0.25,
+            "avg_return": -0.05781676866579207,
+            "expectancy": -0.05781676866579207
+          },
+          "h90": null,
+          "score": -0.05781676866579207
+        },
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 25,
+            "samples": 24,
+            "win_rate": 0.125,
+            "avg_return": -0.06932061709304281,
+            "expectancy": -0.06932061709304281
+          },
+          "h90": null,
+          "score": -0.06932061709304281
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 11,
+            "samples": 11,
+            "win_rate": 0.09090909090909091,
+            "avg_return": -0.14132988473787553,
+            "expectancy": -0.14132988473787553
+          },
+          "h90": {
+            "signals": 11,
+            "samples": 9,
+            "win_rate": 0.5555555555555556,
+            "avg_return": -0.034830216114873885,
+            "expectancy": -0.034830216114873885
+          },
+          "score": -0.09873001728867487
+        }
+      ],
+      "rules_tested": 4
+    }
+  ]
+}

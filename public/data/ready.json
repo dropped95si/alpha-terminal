@@ -1,0 +1,10 @@
+{
+  "as_of": "2026-01-19T21:31:30.523260Z",
+  "auto_thresholds": {
+    "vol_z_min": 0.55,
+    "near_breakout_pct": 0.995,
+    "fv_max_extension_atr": 0.75,
+    "ready_confirm_closes": 1
+  },
+  "cards": []
+}

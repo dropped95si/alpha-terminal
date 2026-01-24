@@ -1,0 +1,71 @@
+{
+  "as_of": "2026-01-19T21:31:30.523260Z",
+  "auto_thresholds": {
+    "vol_z_min": 0.55,
+    "near_breakout_pct": 0.995,
+    "fv_max_extension_atr": 0.75,
+    "ready_confirm_closes": 1
+  },
+  "rankings": [
+    {
+      "ticker": "SOXX",
+      "score": 2.205328530374511
+    },
+    {
+      "ticker": "SMH",
+      "score": 2.182486731928858
+    },
+    {
+      "ticker": "IWM",
+      "score": 2.0921345186370557
+    },
+    {
+      "ticker": "XLI",
+      "score": 2.0917773220869256
+    },
+    {
+      "ticker": "XLE",
+      "score": 2.086332504990823
+    },
+    {
+      "ticker": "XLV",
+      "score": 2.067004647365282
+    },
+    {
+      "ticker": "IEMG",
+      "score": 2.0575604048744394
+    },
+    {
+      "ticker": "XLF",
+      "score": 2.0383367978225015
+    },
+    {
+      "ticker": "SPY",
+      "score": 2.035729238975308
+    },
+    {
+      "ticker": "XLY",
+      "score": 2.0307627600416236
+    },
+    {
+      "ticker": "XLP",
+      "score": 2.029721630424809
+    },
+    {
+      "ticker": "VWO",
+      "score": 2.027334465682385
+    },
+    {
+      "ticker": "QQQ",
+      "score": 2.0260450540646353
+    },
+    {
+      "ticker": "XLK",
+      "score": 2.020140811225218
+    },
+    {
+      "ticker": "INDA",
+      "score": -0.04413098934713555
+    }
+  ]
+}

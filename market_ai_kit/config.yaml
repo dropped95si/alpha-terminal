@@ -1,0 +1,19 @@
+mode: mom_safe
+universe:
+  core_etfs: [SPY, QQQ, SMH, XLK, XLE]
+  us_large_caps: [NVDA, AVGO, MSFT, AMZN, AAPL, ANET, AMD]
+scan:
+  history_years: 3
+  interval: 1d
+  min_avg_dollar_volume: 50000000
+  max_cards_total: 12
+rules:
+  # The 1:3 Sober Rail
+  target_r_multiple_1: 1.5
+  target_r_multiple_2: 4.5  # Hunt for 3x the risk distance
+  vol_z_min: 1.5            # Must be a high-conviction 'Whale Fight'
+  atr_stop_buffer: 1.5      # Give the trade room to breathe
+sentiment:
+  panic_threshold: -0.4
+  euphoria_threshold: 0.6
+  weight_impact: 0.2        # Drag confidence down by 20% if panic is detected

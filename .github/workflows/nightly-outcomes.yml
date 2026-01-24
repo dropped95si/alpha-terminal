@@ -1,0 +1,50 @@
+name: Nightly Outcomes + Rule Stats
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    # Weekdays 22:30 UTC
+    - cron: "30 22 * * 1-5"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nightly-outcomes
+  cancel-in-progress: false
+
+jobs:
+  learn:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python deps
+        working-directory: market_ai_kit
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Compute outcomes (20/60/90d)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        working-directory: market_ai_kit
+        run: |
+          python backtest/outcomes.py
+
+      - name: Aggregate rule_stats
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        working-directory: market_ai_kit
+        run: |
+          python backtest/rule_stats.py

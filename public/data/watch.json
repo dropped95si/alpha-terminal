@@ -1,0 +1,2015 @@
+{
+  "as_of": "2026-01-19T21:31:30.523260Z",
+  "auto_thresholds": {
+    "vol_z_min": 0.55,
+    "near_breakout_pct": 0.995,
+    "fv_max_extension_atr": 0.75,
+    "ready_confirm_closes": 1
+  },
+  "cards": [
+    {
+      "ticker": "SPY",
+      "price": 691.66,
+      "avg_dollar_volume": 50070138351,
+      "rs_60d_vs_spy": 0.0,
+      "vol_z": 0.36,
+      "fv": {
+        "vwap_20": 687.63,
+        "low": 682.05,
+        "high": 693.21
+      },
+      "range": {
+        "low": 650.85,
+        "high": 696.09
+      },
+      "pivots": {
+        "resistance": [
+          688.2000122070312,
+          690.8300170898438,
+          691.6599731445312,
+          693.9600219726562,
+          695.3099975585938
+        ],
+        "support": [
+          674.9000244140625,
+          676.469970703125,
+          681.7100219726562,
+          679.8200073242188,
+          686.3800048828125
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 619.2899780273438,
+          "high": 696.0900268554688
+        },
+        "levels": {
+          "0.382": 666.75,
+          "0.5": 657.69,
+          "0.618": 648.63,
+          "0.786": 635.73
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "value_zone",
+          "zone": {
+            "low": 682.05,
+            "high": 693.21
+          },
+          "why": [
+            "Best learned rule suggests value/mean-reversion entries work for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 673.68,
+          "why": [
+            "Break below value zone / ATR buffer"
+          ]
+        },
+        "targets": [
+          {
+            "price": 704.37,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 715.54,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 11,
+            "samples": 11,
+            "win_rate": 1.0,
+            "avg_return": 0.053288922753665376,
+            "expectancy": 0.053288922753665376
+          },
+          "h90": null,
+          "score": 0.053288922753665376
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 12,
+            "samples": 10,
+            "win_rate": 1.0,
+            "avg_return": 0.044620039275534484,
+            "expectancy": 0.044620039275534484
+          },
+          "h90": null,
+          "score": 0.044620039275534484
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 6,
+            "samples": 6,
+            "win_rate": 1.0,
+            "avg_return": 0.03411768647458091,
+            "expectancy": 0.03411768647458091
+          },
+          "h90": {
+            "signals": 6,
+            "samples": 5,
+            "win_rate": 0.8,
+            "avg_return": 0.05725453449443831,
+            "expectancy": 0.05725453449443831
+          },
+          "score": 0.04337242568252387
+        }
+      ],
+      "labels": [
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    },
+    {
+      "ticker": "QQQ",
+      "price": 621.26,
+      "avg_dollar_volume": 29198031847,
+      "rs_60d_vs_spy": -0.0097,
+      "vol_z": 0.94,
+      "fv": {
+        "vwap_20": 619.99,
+        "low": 612.17,
+        "high": 627.81
+      },
+      "range": {
+        "low": 580.74,
+        "high": 637.01
+      },
+      "pivots": {
+        "resistance": [
+          622.4099731445312,
+          624.280029296875,
+          625.52001953125,
+          627.9400024414062,
+          627.8900146484375
+        ],
+        "support": [
+          606.9199829101562,
+          614.0499877929688,
+          610.1500244140625,
+          616.719970703125,
+          618.5399780273438
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 551.6799926757812,
+          "high": 637.010009765625
+        },
+        "levels": {
+          "0.382": 604.41,
+          "0.5": 594.35,
+          "0.618": 584.28,
+          "0.786": 569.94
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "breakout_confirmation",
+          "trigger": 637.01,
+          "why": [
+            "Best learned rule suggests breakout/confirmation works for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 617.45,
+          "why": [
+            "Break below structure / ATR-based risk"
+          ]
+        },
+        "targets": [
+          {
+            "price": 652.66,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 668.3,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 5,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.0863244657633269,
+            "expectancy": 0.0863244657633269
+          },
+          "h90": {
+            "signals": 5,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.1155247114011119,
+            "expectancy": 0.1155247114011119
+          },
+          "score": 0.0980045640184409
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 13,
+            "samples": 13,
+            "win_rate": 1.0,
+            "avg_return": 0.06426701457773511,
+            "expectancy": 0.06426701457773511
+          },
+          "h90": null,
+          "score": 0.06426701457773511
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 7,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.05580300768550837,
+            "expectancy": 0.05580300768550837
+          },
+          "h90": null,
+          "score": 0.05580300768550837
+        }
+      ],
+      "labels": [
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    },
+    {
+      "ticker": "XLK",
+      "price": 145.62,
+      "avg_dollar_volume": 1850251695,
+      "rs_60d_vs_spy": -0.0156,
+      "vol_z": 0.3,
+      "fv": {
+        "vwap_20": 145.29,
+        "low": 142.98,
+        "high": 147.6
+      },
+      "range": {
+        "low": 133.74,
+        "high": 152.99
+      },
+      "pivots": {
+        "resistance": [
+          149.22000122070312,
+          148.1300048828125,
+          145.97999572753906,
+          146.97999572753906,
+          147.3800048828125
+        ],
+        "support": [
+          142.57000732421875,
+          143.41000366210938,
+          144.25,
+          144.6300048828125,
+          143.5
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 127.88999938964844,
+          "high": 152.9949951171875
+        },
+        "levels": {
+          "0.382": 143.4,
+          "0.5": 140.44,
+          "0.618": 137.48,
+          "0.786": 133.26
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "value_zone",
+          "zone": {
+            "low": 142.98,
+            "high": 147.6
+          },
+          "why": [
+            "Best learned rule suggests value/mean-reversion entries work for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 139.52,
+          "why": [
+            "Break below value zone / ATR buffer"
+          ]
+        },
+        "targets": [
+          {
+            "price": 152.22,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 156.83,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 6,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.08439498151333273,
+            "expectancy": 0.08439498151333273
+          },
+          "h90": null,
+          "score": 0.08439498151333273
+        },
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 6,
+            "samples": 6,
+            "win_rate": 0.6666666666666666,
+            "avg_return": 0.05019218308932991,
+            "expectancy": 0.05019218308932991
+          },
+          "h90": {
+            "signals": 6,
+            "samples": 6,
+            "win_rate": 1.0,
+            "avg_return": 0.09422565169224646,
+            "expectancy": 0.09422565169224646
+          },
+          "score": 0.06780557053049653
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 8,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.03181675758694147,
+            "expectancy": 0.03181675758694147
+          },
+          "h90": null,
+          "score": 0.03181675758694147
+        }
+      ],
+      "labels": [
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    },
+    {
+      "ticker": "XLF",
+      "price": 54.44,
+      "avg_dollar_volume": 2116306388,
+      "rs_60d_vs_spy": 0.0026,
+      "vol_z": 0.39,
+      "fv": {
+        "vwap_20": 55.1,
+        "low": 54.44,
+        "high": 55.77
+      },
+      "range": {
+        "low": 51.08,
+        "high": 56.52
+      },
+      "pivots": {
+        "resistance": [
+          56.5099983215332,
+          56.52000045776367,
+          56.34000015258789,
+          56.25,
+          56.15999984741211
+        ],
+        "support": [
+          54.560001373291016,
+          54.7400016784668,
+          54.75,
+          54.34000015258789,
+          54.81999969482422
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 51.04999923706055,
+          "high": 56.52000045776367
+        },
+        "levels": {
+          "0.382": 54.43,
+          "0.5": 53.78,
+          "0.618": 53.14,
+          "0.786": 52.22
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "breakout_confirmation",
+          "trigger": 56.52,
+          "why": [
+            "Best learned rule suggests breakout/confirmation works for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 54.86,
+          "why": [
+            "Break below structure / ATR-based risk"
+          ]
+        },
+        "targets": [
+          {
+            "price": 57.85,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 59.17,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 10,
+            "samples": 9,
+            "win_rate": 0.7777777777777778,
+            "avg_return": 0.020035870090005355,
+            "expectancy": 0.020035870090005355
+          },
+          "h90": {
+            "signals": 10,
+            "samples": 9,
+            "win_rate": 0.8888888888888888,
+            "avg_return": 0.0798737086317675,
+            "expectancy": 0.0798737086317675
+          },
+          "score": 0.043971005506710216
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 41,
+            "samples": 28,
+            "win_rate": 0.75,
+            "avg_return": 0.013142646251419091,
+            "expectancy": 0.013142646251419091
+          },
+          "h90": null,
+          "score": 0.013142646251419091
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 39,
+            "samples": 29,
+            "win_rate": 0.6551724137931034,
+            "avg_return": 0.00839777023988567,
+            "expectancy": 0.00839777023988567
+          },
+          "h90": null,
+          "score": 0.00839777023988567
+        }
+      ],
+      "labels": [
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    },
+    {
+      "ticker": "XLY",
+      "price": 122.3,
+      "avg_dollar_volume": 1175854181,
+      "rs_60d_vs_spy": -0.005,
+      "vol_z": -0.59,
+      "fv": {
+        "vwap_20": 121.74,
+        "low": 120.09,
+        "high": 123.39
+      },
+      "range": {
+        "low": 110.46,
+        "high": 125.01
+      },
+      "pivots": {
+        "resistance": [
+          123.62999725341797,
+          122.41999816894531,
+          122.81999969482422,
+          122.6500015258789,
+          124.55999755859375
+        ],
+        "support": [
+          120.2699966430664,
+          119.36000061035156,
+          117.70999908447266,
+          118.58999633789062,
+          119.44000244140625
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 107.375,
+          "high": 125.01000213623047
+        },
+        "levels": {
+          "0.382": 118.27,
+          "0.5": 116.19,
+          "0.618": 114.11,
+          "0.786": 111.15
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "breakout_confirmation",
+          "trigger": 125.01,
+          "why": [
+            "Best learned rule suggests breakout/confirmation works for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 120.88,
+          "why": [
+            "Break below structure / ATR-based risk"
+          ]
+        },
+        "targets": [
+          {
+            "price": 128.31,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 131.62,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 6,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.06589236563995012,
+            "expectancy": 0.06589236563995012
+          },
+          "h90": {
+            "signals": 6,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.1181457772237839,
+            "expectancy": 0.1181457772237839
+          },
+          "score": 0.08679373027348364
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 7,
+            "samples": 7,
+            "win_rate": 0.8571428571428571,
+            "avg_return": 0.023183802304316554,
+            "expectancy": 0.023183802304316554
+          },
+          "h90": {
+            "signals": 7,
+            "samples": 7,
+            "win_rate": 0.2857142857142857,
+            "avg_return": -0.04134306916982059,
+            "expectancy": -0.04134306916982059
+          },
+          "score": -0.0026269462853383066
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 24,
+            "samples": 21,
+            "win_rate": 0.47619047619047616,
+            "avg_return": -0.020599680620276263,
+            "expectancy": -0.020599680620276263
+          },
+          "h90": null,
+          "score": -0.020599680620276263
+        }
+      ],
+      "labels": [
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    },
+    {
+      "ticker": "VWO",
+      "price": 56.0,
+      "avg_dollar_volume": 681654382,
+      "rs_60d_vs_spy": -0.0084,
+      "vol_z": -0.02,
+      "fv": {
+        "vwap_20": 54.93,
+        "low": 54.44,
+        "high": 55.43
+      },
+      "range": {
+        "low": 52.5,
+        "high": 56.57
+      },
+      "pivots": {
+        "resistance": [
+          54.439998626708984,
+          54.189998626708984,
+          54.75,
+          54.66999816894531,
+          54.47999954223633
+        ],
+        "support": [
+          53.09000015258789,
+          53.560001373291016,
+          52.959999084472656,
+          53.29999923706055,
+          53.279998779296875
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 49.369998931884766,
+          "high": 56.56999969482422
+        },
+        "levels": {
+          "0.382": 53.82,
+          "0.5": 52.97,
+          "0.618": 52.12,
+          "0.786": 50.91
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "value_zone",
+          "zone": {
+            "low": 54.44,
+            "high": 55.43
+          },
+          "why": [
+            "Best learned rule suggests value/mean-reversion entries work for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 53.7,
+          "why": [
+            "Break below value zone / ATR buffer"
+          ]
+        },
+        "targets": [
+          {
+            "price": 56.41,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 57.4,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 13,
+            "samples": 13,
+            "win_rate": 1.0,
+            "avg_return": 0.058565350736344716,
+            "expectancy": 0.058565350736344716
+          },
+          "h90": null,
+          "score": 0.058565350736344716
+        },
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 7,
+            "samples": 6,
+            "win_rate": 0.8333333333333334,
+            "avg_return": 0.03342591629593814,
+            "expectancy": 0.03342591629593814
+          },
+          "h90": {
+            "signals": 7,
+            "samples": 6,
+            "win_rate": 0.8333333333333334,
+            "avg_return": 0.05213672355328308,
+            "expectancy": 0.05213672355328308
+          },
+          "score": 0.04091023919887612
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 8,
+            "samples": 8,
+            "win_rate": 0.5,
+            "avg_return": 0.007002417471081601,
+            "expectancy": 0.007002417471081601
+          },
+          "h90": {
+            "signals": 8,
+            "samples": 6,
+            "win_rate": 0.6666666666666666,
+            "avg_return": 0.03340404104927323,
+            "expectancy": 0.03340404104927323
+          },
+          "score": 0.017563066902358253
+        }
+      ],
+      "labels": [
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    },
+    {
+      "ticker": "INDA",
+      "price": 52.85,
+      "avg_dollar_volume": 306628707,
+      "rs_60d_vs_spy": -0.0799,
+      "vol_z": 0.28,
+      "fv": {
+        "vwap_20": 53.72,
+        "low": 53.3,
+        "high": 54.14
+      },
+      "range": {
+        "low": 52.68,
+        "high": 55.5
+      },
+      "pivots": {
+        "resistance": [
+          54.470001220703125,
+          54.58000183105469,
+          54.34000015258789,
+          54.290000915527344,
+          54.36000061035156
+        ],
+        "support": [
+          52.810001373291016,
+          52.939998626708984,
+          53.2400016784668,
+          53.40999984741211,
+          53.58000183105469
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 51.83000183105469,
+          "high": 55.5
+        },
+        "levels": {
+          "0.382": 54.1,
+          "0.5": 53.67,
+          "0.618": 53.23,
+          "0.786": 52.62
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "breakout_confirmation",
+          "trigger": 55.5,
+          "why": [
+            "Best learned rule suggests breakout/confirmation works for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 54.46,
+          "why": [
+            "Break below structure / ATR-based risk"
+          ]
+        },
+        "targets": [
+          {
+            "price": 56.33,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 57.16,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 7,
+            "samples": 6,
+            "win_rate": 0.5,
+            "avg_return": 0.010707835766887145,
+            "expectancy": 0.010707835766887145
+          },
+          "h90": {
+            "signals": 7,
+            "samples": 5,
+            "win_rate": 0.6,
+            "avg_return": 0.02280916537678237,
+            "expectancy": 0.02280916537678237
+          },
+          "score": 0.015548367610845236
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 54,
+            "samples": 43,
+            "win_rate": 0.6976744186046512,
+            "avg_return": 0.01428827625992335,
+            "expectancy": 0.01428827625992335
+          },
+          "h90": null,
+          "score": 0.01428827625992335
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 56,
+            "samples": 42,
+            "win_rate": 0.40476190476190477,
+            "avg_return": -0.006933277199931571,
+            "expectancy": -0.006933277199931571
+          },
+          "h90": null,
+          "score": -0.006933277199931571
+        }
+      ],
+      "labels": [
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    },
+    {
+      "ticker": "NVDA",
+      "price": 186.23,
+      "avg_dollar_volume": 29371236266,
+      "rs_60d_vs_spy": -0.0027,
+      "vol_z": 0.57,
+      "fv": {
+        "vwap_20": 185.69,
+        "low": 180.5,
+        "high": 190.88
+      },
+      "range": {
+        "low": 169.55,
+        "high": 212.19
+      },
+      "pivots": {
+        "resistance": [
+          190.55999755859375,
+          192.92999267578125,
+          193.6300048828125,
+          192.1699981689453,
+          191.3699951171875
+        ],
+        "support": [
+          174.89999389648438,
+          170.30999755859375,
+          171.82000732421875,
+          183.7100067138672,
+          183.6699981689453
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 164.07000732421875,
+          "high": 212.19000244140625
+        },
+        "levels": {
+          "0.382": 193.81,
+          "0.5": 188.13,
+          "0.618": 182.45,
+          "0.786": 174.37
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "breakout_confirmation",
+          "trigger": 212.19,
+          "why": [
+            "Best learned rule suggests breakout/confirmation works for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 199.21,
+          "why": [
+            "Break below structure / ATR-based risk"
+          ]
+        },
+        "targets": [
+          {
+            "price": 222.57,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 232.95,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 12,
+            "samples": 10,
+            "win_rate": 1.0,
+            "avg_return": 0.168314415983332,
+            "expectancy": 0.168314415983332
+          },
+          "h90": {
+            "signals": 12,
+            "samples": 9,
+            "win_rate": 1.0,
+            "avg_return": 0.4149034190399024,
+            "expectancy": 0.4149034190399024
+          },
+          "score": 0.2669500172059602
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 22,
+            "samples": 17,
+            "win_rate": 0.7647058823529411,
+            "avg_return": 0.041283936566358176,
+            "expectancy": 0.041283936566358176
+          },
+          "h90": null,
+          "score": 0.041283936566358176
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 19,
+            "samples": 6,
+            "win_rate": 1.0,
+            "avg_return": 0.01847441634864792,
+            "expectancy": 0.01847441634864792
+          },
+          "h90": null,
+          "score": 0.01847441634864792
+        }
+      ],
+      "labels": [
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    },
+    {
+      "ticker": "AVGO",
+      "price": 351.71,
+      "avg_dollar_volume": 10713225963,
+      "rs_60d_vs_spy": -0.0022,
+      "vol_z": -0.0,
+      "fv": {
+        "vwap_20": 342.7,
+        "low": 329.44,
+        "high": 355.96
+      },
+      "range": {
+        "low": 321.42,
+        "high": 414.61
+      },
+      "pivots": {
+        "resistance": [
+          350.1099853515625,
+          350.3299865722656,
+          352.67999267578125,
+          360.6600036621094,
+          355.0299987792969
+        ],
+        "support": [
+          337.2200012207031,
+          336.5,
+          338.0,
+          330.5,
+          333.5
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 281.6099853515625,
+          "high": 414.6099853515625
+        },
+        "levels": {
+          "0.382": 363.8,
+          "0.5": 348.11,
+          "0.618": 332.42,
+          "0.786": 310.07
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "breakout_confirmation",
+          "trigger": 414.61,
+          "why": [
+            "Best learned rule suggests breakout/confirmation works for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 381.46,
+          "why": [
+            "Break below structure / ATR-based risk"
+          ]
+        },
+        "targets": [
+          {
+            "price": 441.13,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 467.65,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 11,
+            "samples": 11,
+            "win_rate": 0.5454545454545454,
+            "avg_return": -0.002240135668304449,
+            "expectancy": -0.002240135668304449
+          },
+          "h90": {
+            "signals": 11,
+            "samples": 10,
+            "win_rate": 0.7,
+            "avg_return": 0.09642201789811464,
+            "expectancy": 0.09642201789811464
+          },
+          "score": 0.03722472575826319
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 16,
+            "samples": 7,
+            "win_rate": 0.7142857142857143,
+            "avg_return": 0.03406155291515357,
+            "expectancy": 0.03406155291515357
+          },
+          "h90": null,
+          "score": 0.03406155291515357
+        }
+      ],
+      "labels": [
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    },
+    {
+      "ticker": "MSFT",
+      "price": 459.86,
+      "avg_dollar_volume": 10957999270,
+      "rs_60d_vs_spy": -0.1523,
+      "vol_z": 0.8,
+      "fv": {
+        "vwap_20": 477.12,
+        "low": 468.86,
+        "high": 485.38
+      },
+      "range": {
+        "low": 455.9,
+        "high": 553.72
+      },
+      "pivots": {
+        "resistance": [
+          489.6000061035156,
+          489.1600036621094,
+          488.3500061035156,
+          488.1400146484375,
+          489.70001220703125
+        ],
+        "support": [
+          472.5199890136719,
+          470.8800048828125,
+          475.0,
+          470.1600036621094,
+          469.5
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 455.8999938964844,
+          "high": 555.4500122070312
+        },
+        "levels": {
+          "0.382": 517.42,
+          "0.5": 505.68,
+          "0.618": 493.93,
+          "0.786": 477.2
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "value_zone",
+          "zone": {
+            "low": 468.86,
+            "high": 485.38
+          },
+          "why": [
+            "Best learned rule suggests value/mean-reversion entries work for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 456.47,
+          "why": [
+            "Break below value zone / ATR buffer"
+          ]
+        },
+        "targets": [
+          {
+            "price": 501.9,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 518.42,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 17,
+            "samples": 6,
+            "win_rate": 1.0,
+            "avg_return": 0.056987570057778915,
+            "expectancy": 0.056987570057778915
+          },
+          "h90": null,
+          "score": 0.056987570057778915
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 19,
+            "samples": 15,
+            "win_rate": 0.5333333333333333,
+            "avg_return": 0.003494993595359134,
+            "expectancy": 0.003494993595359134
+          },
+          "h90": null,
+          "score": 0.003494993595359134
+        },
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 6,
+            "samples": 6,
+            "win_rate": 0.5,
+            "avg_return": -0.0006161194078946886,
+            "expectancy": -0.0006161194078946886
+          },
+          "h90": {
+            "signals": 6,
+            "samples": 6,
+            "win_rate": 0.5,
+            "avg_return": -0.002370573450284167,
+            "expectancy": -0.002370573450284167
+          },
+          "score": -0.00131790102485048
+        }
+      ],
+      "labels": [
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    },
+    {
+      "ticker": "META",
+      "price": 620.25,
+      "avg_dollar_volume": 9238972041,
+      "rs_60d_vs_spy": -0.19,
+      "vol_z": 0.29,
+      "fv": {
+        "vwap_20": 650.67,
+        "low": 636.12,
+        "high": 665.22
+      },
+      "range": {
+        "low": 581.25,
+        "high": 759.16
+      },
+      "pivots": {
+        "resistance": [
+          670.5599975585938,
+          673.5800170898438,
+          666.0,
+          668.1799926757812,
+          665.52001953125
+        ],
+        "support": [
+          581.8599853515625,
+          640.7999877929688,
+          638.6099853515625,
+          638.7000122070312,
+          643.2000122070312
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 581.25,
+          "high": 796.25
+        },
+        "levels": {
+          "0.382": 714.12,
+          "0.5": 688.75,
+          "0.618": 663.38,
+          "0.786": 627.26
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "value_zone",
+          "zone": {
+            "low": 636.12,
+            "high": 665.22
+          },
+          "why": [
+            "Best learned rule suggests value/mean-reversion entries work for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 614.31,
+          "why": [
+            "Break below value zone / ATR buffer"
+          ]
+        },
+        "targets": [
+          {
+            "price": 694.31,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 723.4,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 18,
+            "samples": 14,
+            "win_rate": 0.7142857142857143,
+            "avg_return": 0.07918766624867543,
+            "expectancy": 0.07918766624867543
+          },
+          "h90": null,
+          "score": 0.07918766624867543
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 14,
+            "samples": 14,
+            "win_rate": 0.6428571428571429,
+            "avg_return": 0.0007755824520375392,
+            "expectancy": 0.0007755824520375392
+          },
+          "h90": null,
+          "score": 0.0007755824520375392
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 10,
+            "samples": 10,
+            "win_rate": 0.4,
+            "avg_return": -0.07852926673138509,
+            "expectancy": -0.07852926673138509
+          },
+          "h90": {
+            "signals": 10,
+            "samples": 10,
+            "win_rate": 0.7,
+            "avg_return": 0.0031414634791847697,
+            "expectancy": 0.0031414634791847697
+          },
+          "score": -0.045860974647157146
+        }
+      ],
+      "labels": [
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    },
+    {
+      "ticker": "AAPL",
+      "price": 255.53,
+      "avg_dollar_volume": 11862976199,
+      "rs_60d_vs_spy": -0.047,
+      "vol_z": 1.02,
+      "fv": {
+        "vwap_20": 265.96,
+        "low": 261.62,
+        "high": 270.3
+      },
+      "range": {
+        "low": 254.93,
+        "high": 288.62
+      },
+      "pivots": {
+        "resistance": [
+          280.1499938964844,
+          275.3699951171875,
+          274.0799865722656,
+          273.67999267578125,
+          277.8399963378906
+        ],
+        "support": [
+          266.95001220703125,
+          269.8999938964844,
+          270.510009765625,
+          269.55999755859375,
+          255.6999969482422
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 201.5,
+          "high": 288.6199951171875
+        },
+        "levels": {
+          "0.382": 255.34,
+          "0.5": 245.06,
+          "0.618": 234.78,
+          "0.786": 220.14
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "breakout_confirmation",
+          "trigger": 288.62,
+          "why": [
+            "Best learned rule suggests breakout/confirmation works for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 277.77,
+          "why": [
+            "Break below structure / ATR-based risk"
+          ]
+        },
+        "targets": [
+          {
+            "price": 297.3,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 305.98,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 8,
+            "samples": 8,
+            "win_rate": 0.75,
+            "avg_return": 0.06698467736483736,
+            "expectancy": 0.06698467736483736
+          },
+          "h90": {
+            "signals": 8,
+            "samples": 5,
+            "win_rate": 0.8,
+            "avg_return": 0.09379244869685141,
+            "expectancy": 0.09379244869685141
+          },
+          "score": 0.07770778589764299
+        },
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 18,
+            "samples": 11,
+            "win_rate": 0.6363636363636364,
+            "avg_return": -0.0011169564710672632,
+            "expectancy": -0.0011169564710672632
+          },
+          "h90": null,
+          "score": -0.0011169564710672632
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 28,
+            "samples": 28,
+            "win_rate": 0.6428571428571429,
+            "avg_return": -0.0023932564519398964,
+            "expectancy": -0.0023932564519398964
+          },
+          "h90": null,
+          "score": -0.0023932564519398964
+        }
+      ],
+      "labels": [
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    },
+    {
+      "ticker": "ANET",
+      "price": 129.83,
+      "avg_dollar_volume": 854700556,
+      "rs_60d_vs_spy": -0.1501,
+      "vol_z": -0.22,
+      "fv": {
+        "vwap_20": 129.59,
+        "low": 124.49,
+        "high": 134.7
+      },
+      "range": {
+        "low": 114.52,
+        "high": 164.94
+      },
+      "pivots": {
+        "resistance": [
+          134.4499969482422,
+          132.8300018310547,
+          136.08999633789062,
+          141.41000366210938,
+          137.92999267578125
+        ],
+        "support": [
+          124.19999694824219,
+          121.62999725341797,
+          123.87999725341797,
+          122.80999755859375,
+          121.9000015258789
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 114.5199966430664,
+          "high": 164.94000244140625
+        },
+        "levels": {
+          "0.382": 145.68,
+          "0.5": 139.73,
+          "0.618": 133.78,
+          "0.786": 125.31
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "breakout_confirmation",
+          "trigger": 164.94,
+          "why": [
+            "Best learned rule suggests breakout/confirmation works for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 152.17,
+          "why": [
+            "Break below structure / ATR-based risk"
+          ]
+        },
+        "targets": [
+          {
+            "price": 175.16,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 185.37,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 16,
+            "samples": 16,
+            "win_rate": 0.5,
+            "avg_return": 0.017171280246445812,
+            "expectancy": 0.017171280246445812
+          },
+          "h90": {
+            "signals": 16,
+            "samples": 14,
+            "win_rate": 0.6428571428571429,
+            "avg_return": 0.059740105209332525,
+            "expectancy": 0.059740105209332525
+          },
+          "score": 0.0341988102316005
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 11,
+            "samples": 6,
+            "win_rate": 0.16666666666666666,
+            "avg_return": -0.01178358266317886,
+            "expectancy": -0.01178358266317886
+          },
+          "h90": null,
+          "score": -0.01178358266317886
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 12,
+            "samples": 11,
+            "win_rate": 0.0,
+            "avg_return": -0.09393771613616536,
+            "expectancy": -0.09393771613616536
+          },
+          "h90": null,
+          "score": -0.09393771613616536
+        }
+      ],
+      "labels": [
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    },
+    {
+      "ticker": "AMD",
+      "price": 231.83,
+      "avg_dollar_volume": 6762485863,
+      "rs_60d_vs_spy": -0.0288,
+      "vol_z": 0.79,
+      "fv": {
+        "vwap_20": 217.06,
+        "low": 207.77,
+        "high": 226.35
+      },
+      "range": {
+        "low": 194.28,
+        "high": 267.08
+      },
+      "pivots": {
+        "resistance": [
+          221.5,
+          220.1699981689453,
+          217.63999938964844,
+          227.14999389648438,
+          234.02000427246094
+        ],
+        "support": [
+          200.5,
+          204.1999969482422,
+          207.1699981689453,
+          203.3300018310547,
+          203.07000732421875
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 149.22000122070312,
+          "high": 267.0799865722656
+        },
+        "levels": {
+          "0.382": 222.06,
+          "0.5": 208.15,
+          "0.618": 194.24,
+          "0.786": 174.44
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "breakout_confirmation",
+          "trigger": 267.08,
+          "why": [
+            "Best learned rule suggests breakout/confirmation works for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 243.85,
+          "why": [
+            "Break below structure / ATR-based risk"
+          ]
+        },
+        "targets": [
+          {
+            "price": 285.66,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 304.25,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 14,
+            "samples": 14,
+            "win_rate": 0.6428571428571429,
+            "avg_return": 0.12818020934421365,
+            "expectancy": 0.12818020934421365
+          },
+          "h90": {
+            "signals": 14,
+            "samples": 12,
+            "win_rate": 0.6666666666666666,
+            "avg_return": 0.2841314576914921,
+            "expectancy": 0.2841314576914921
+          },
+          "score": 0.19056070868312502
+        },
+        {
+          "rule": "FIB_BOUNCE_0.786",
+          "h60": {
+            "signals": 20,
+            "samples": 20,
+            "win_rate": 0.25,
+            "avg_return": 0.011718547696116032,
+            "expectancy": 0.011718547696116032
+          },
+          "h90": null,
+          "score": 0.011718547696116032
+        }
+      ],
+      "labels": [
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    },
+    {
+      "ticker": "TCEHY",
+      "price": 78.6,
+      "avg_dollar_volume": 179699175,
+      "rs_60d_vs_spy": -0.0526,
+      "vol_z": -0.14,
+      "fv": {
+        "vwap_20": 79.51,
+        "low": 77.9,
+        "high": 81.12
+      },
+      "range": {
+        "low": 74.58,
+        "high": 86.0
+      },
+      "pivots": {
+        "resistance": [
+          79.36000061035156,
+          79.12000274658203,
+          77.58999633789062,
+          80.55999755859375,
+          81.44999694824219
+        ],
+        "support": [
+          76.22000122070312,
+          76.37999725341797,
+          76.5,
+          76.95999908447266,
+          76.51000213623047
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 67.36000061035156,
+          "high": 87.68000030517578
+        },
+        "levels": {
+          "0.382": 79.92,
+          "0.5": 77.52,
+          "0.618": 75.12,
+          "0.786": 71.71
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "breakout_confirmation",
+          "trigger": 86.0,
+          "why": [
+            "Best learned rule suggests breakout/confirmation works for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 81.97,
+          "why": [
+            "Break below structure / ATR-based risk"
+          ]
+        },
+        "targets": [
+          {
+            "price": 89.22,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 92.45,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 8,
+            "samples": 7,
+            "win_rate": 0.8571428571428571,
+            "avg_return": 0.15322245458091074,
+            "expectancy": 0.15322245458091074
+          },
+          "h90": {
+            "signals": 8,
+            "samples": 7,
+            "win_rate": 0.8571428571428571,
+            "avg_return": 0.14976781234794023,
+            "expectancy": 0.14976781234794023
+          },
+          "score": 0.15184059768772254
+        },
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 7,
+            "samples": 6,
+            "win_rate": 1.0,
+            "avg_return": 0.07483296490208076,
+            "expectancy": 0.07483296490208076
+          },
+          "h90": null,
+          "score": 0.07483296490208076
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 17,
+            "samples": 17,
+            "win_rate": 0.6470588235294118,
+            "avg_return": 0.04272063460050827,
+            "expectancy": 0.04272063460050827
+          },
+          "h90": {
+            "signals": 17,
+            "samples": 16,
+            "win_rate": 0.8125,
+            "avg_return": 0.05542736924058711,
+            "expectancy": 0.05542736924058711
+          },
+          "score": 0.047803328456539805
+        }
+      ],
+      "labels": [
+        "CHINA_HIGH_HEADLINE_RISK",
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    },
+    {
+      "ticker": "BABA",
+      "price": 165.4,
+      "avg_dollar_volume": 1976723936,
+      "rs_60d_vs_spy": -0.0385,
+      "vol_z": 0.79,
+      "fv": {
+        "vwap_20": 157.52,
+        "low": 151.62,
+        "high": 163.42
+      },
+      "range": {
+        "low": 145.27,
+        "high": 182.5
+      },
+      "pivots": {
+        "resistance": [
+          161.72999572753906,
+          159.49000549316406,
+          160.74000549316406,
+          151.3000030517578,
+          156.64999389648438
+        ],
+        "support": [
+          147.11599731445312,
+          147.2100067138672,
+          146.61000061035156,
+          145.27000427246094,
+          148.52000427246094
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 116.11000061035156,
+          "high": 192.6699981689453
+        },
+        "levels": {
+          "0.382": 163.42,
+          "0.5": 154.39,
+          "0.618": 145.36,
+          "0.786": 132.49
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "breakout_confirmation",
+          "trigger": 182.5,
+          "why": [
+            "Best learned rule suggests breakout/confirmation works for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 167.74,
+          "why": [
+            "Break below structure / ATR-based risk"
+          ]
+        },
+        "targets": [
+          {
+            "price": 194.31,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 206.11,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "MA_CROSS_EMA20_50",
+          "h60": {
+            "signals": 6,
+            "samples": 5,
+            "win_rate": 0.8,
+            "avg_return": 0.1534535632948105,
+            "expectancy": 0.1534535632948105
+          },
+          "h90": {
+            "signals": 6,
+            "samples": 5,
+            "win_rate": 1.0,
+            "avg_return": 0.17883356488226626,
+            "expectancy": 0.17883356488226626
+          },
+          "score": 0.1636055639297928
+        },
+        {
+          "rule": "BREAKOUT_VOL",
+          "h60": {
+            "signals": 21,
+            "samples": 21,
+            "win_rate": 0.38095238095238093,
+            "avg_return": -0.023712414227565475,
+            "expectancy": -0.023712414227565475
+          },
+          "h90": {
+            "signals": 21,
+            "samples": 19,
+            "win_rate": 0.7894736842105263,
+            "avg_return": 0.05331853073821602,
+            "expectancy": 0.05331853073821602
+          },
+          "score": 0.007099963758747127
+        },
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 11,
+            "samples": 5,
+            "win_rate": 0.4,
+            "avg_return": -0.04136048427017591,
+            "expectancy": -0.04136048427017591
+          },
+          "h90": null,
+          "score": -0.04136048427017591
+        }
+      ],
+      "labels": [
+        "CHINA_HIGH_HEADLINE_RISK",
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    },
+    {
+      "ticker": "JD",
+      "price": 28.9,
+      "avg_dollar_volume": 278314116,
+      "rs_60d_vs_spy": -0.1454,
+      "vol_z": 0.44,
+      "fv": {
+        "vwap_20": 29.36,
+        "low": 28.65,
+        "high": 30.07
+      },
+      "range": {
+        "low": 28.21,
+        "high": 35.06
+      },
+      "pivots": {
+        "resistance": [
+          30.020000457763672,
+          30.139999389648438,
+          29.079999923706055,
+          29.270000457763672,
+          29.764999389648438
+        ],
+        "support": [
+          28.610000610351562,
+          28.684999465942383,
+          28.510000228881836,
+          29.020000457763672,
+          28.860000610351562
+        ]
+      },
+      "fib": {
+        "anchor": {
+          "low": 28.209999084472656,
+          "high": 36.86000061035156
+        },
+        "levels": {
+          "0.382": 33.56,
+          "0.5": 32.53,
+          "0.618": 31.51,
+          "0.786": 30.06
+        }
+      },
+      "plan": {
+        "entry": {
+          "type": "value_zone",
+          "zone": {
+            "low": 28.65,
+            "high": 30.07
+          },
+          "why": [
+            "Best learned rule suggests value/mean-reversion entries work for this ticker"
+          ]
+        },
+        "exit_if_wrong": {
+          "stop": 28.21,
+          "why": [
+            "Break below value zone / ATR buffer"
+          ]
+        },
+        "targets": [
+          {
+            "price": 31.49,
+            "why": "First step target (ATR multiple)"
+          },
+          {
+            "price": 32.9,
+            "why": "Second step target (ATR multiple)"
+          }
+        ]
+      },
+      "learned_top_rules": [
+        {
+          "rule": "FIB_BOUNCE_0.618",
+          "h60": {
+            "signals": 20,
+            "samples": 16,
+            "win_rate": 0.5,
+            "avg_return": -0.002124979272834046,
+            "expectancy": -0.002124979272834046
+          },
+          "h90": null,
+          "score": -0.002124979272834046
+        },
+        {
+          "rule": "FIB_BOUNCE_0.5",
+          "h60": {
+            "signals": 27,
+            "samples": 24,
+            "win_rate": 0.25,
+            "avg_return": -0.05781676866579207,
+            "expectancy": -0.05781676866579207
+          },
+          "h90": null,
+          "score": -0.05781676866579207
+        },
+        {
+          "rule": "FIB_BOUNCE_0.382",
+          "h60": {
+            "signals": 25,
+            "samples": 24,
+            "win_rate": 0.125,
+            "avg_return": -0.06932061709304281,
+            "expectancy": -0.06932061709304281
+          },
+          "h90": null,
+          "score": -0.06932061709304281
+        }
+      ],
+      "labels": [
+        "CHINA_HIGH_HEADLINE_RISK",
+        "WATCH"
+      ],
+      "as_of": "2026-01-19T21:31:30.523260Z"
+    }
+  ]
+}

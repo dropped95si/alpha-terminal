@@ -1,0 +1,27 @@
+﻿mode: mom_safe
+universe:
+  core_etfs: [SPY, QQQ, SMH, XLK, XLE]
+  us_large_caps: [NVDA, AVGO, MSFT, AMZN, AAPL, ANET, AMD]
+
+scan:
+  history_years: 3
+  interval: 1d
+  max_cards_total: 12
+
+# ADAPTIVE TOLERANCES (No Fixed Guesses)
+rules:
+  target_r_multiple_1: 1.5   # Target 1 (Scalp/Safety)
+  target_r_multiple_2: 4.5   # Target 2 (The 1:3 Alpha Zone)
+  vol_z_min: 1.5             # Minimum 'Whale Fight' conviction
+  atr_stop_buffer: 1.5       # 'Breathable' structural stop
+  
+# TIME-HORIZON LEARNING
+horizons:
+  swing: 60      # 3 Months
+  cycle: 120     # 6 Months
+  wealth: 250    # 1 Year (Mom's Buy & Hold)
+
+# SENTIMENT GUARDRAIL
+sentiment:
+  enabled: true
+  weight_impact: 0.20        # Drag confidence by 20% if news is 'Panic'

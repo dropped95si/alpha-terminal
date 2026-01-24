@@ -1,0 +1,7 @@
+yfinance
+pandas
+numpy
+scipy
+ta
+requests
+pyyaml
