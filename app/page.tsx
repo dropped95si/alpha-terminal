@@ -1,120 +1,97 @@
 "use client";
-import { useEffect, useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import React, { useEffect, useState } from 'react';
+import { MatrixTable } from '@/components/MatrixTable';
+import { NeonChart } from '@/components/NeonChart';
+import { Badge } from '@/components/Badge';
 
-interface Signal {
-  id: string;
-  ticker: string;
-  label: string;
-  plan_type: string;
-  entry: { price: number };
-  stop: { price: number };
-  targets: Array<{ price: number }>;
-  vol_z: number;
-  rs_vs_spy: number;
-  created_at: string;
-}
+export default function AlphaTerminalV2() {
+  const [signals, setSignals] = useState([]);
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE!
-);
-
-export default function MomDashboard() {
-  const [signals, setSignals] = useState<Signal[]>([]);
-  const [loading, setLoading] = useState(true);
-
+  // V2 Data Fetcher
   useEffect(() => {
-    async function fetchSignals() {
-      try {
-        const { data } = await supabase
-          .from('signals')
-          .select('*')
-          .order('created_at', { ascending: false })
-          .limit(12);
-        if (data) setSignals(data as Signal[]);
-      } catch (err) {
-        console.error("Supabase connection error:", err);
-      } finally {
-        setLoading(false);
-      }
+    async function loadAlpha() {
+      const res = await fetch('/api/ingest-scan');
+      const data = await res.json();
+      setSignals(data);
     }
-    fetchSignals();
+    loadAlpha();
   }, []);
 
-  if (loading) return <div className="p-10 bg-slate-950 text-blue-500 font-mono h-screen">Loading Alpha Feed...</div>;
-
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-8 font-sans">
-      <header className="mb-12 border-b border-slate-800 pb-6 flex justify-between items-end">
+    <main className="min-h-screen bg-[#050505] text-white p-8 font-sans">
+      {/* HEADER: V2.0 MECHANICAL BASELINE */}
+      <header className="flex justify-between items-end mb-16 border-b border-white/5 pb-8">
         <div>
-          <h1 className="text-4xl font-black tracking-tighter text-blue-500 uppercase italic">
-            Alpha Terminal <span className="text-slate-500 font-light italic">v1.0</span>
+          <h1 className="text-7xl font-black tracking-tighter italic">
+            ALPHA TERMINAL <span className="text-blue-500">V2.0</span>
           </h1>
-          <p className="text-slate-500 font-mono text-xs mt-2 italic">"Sober Math for the Family Account"</p>
+          <p className="text-slate-500 uppercase font-bold tracking-widest text-xs mt-2">
+            Institutional Probability Engine // Mechanical Engineering for Money
+          </p>
         </div>
-        <div className="text-right text-xs text-slate-500 font-mono uppercase">
-          STATUS: PRODUCTION_LIVE <br />
-          SIGNALS: {signals.length}
+        <div className="text-right">
+          <p className="text-[10px] text-slate-600 uppercase font-black">System Status</p>
+          <p className="text-emerald-500 font-mono font-bold italic">● ADAPTIVE_LEARNING_ACTIVE</p>
         </div>
       </header>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {signals.map((s) => (
-          <div key={s.id} className="bg-slate-900 border border-slate-800 rounded-xl p-6 border-l-4 border-l-blue-500 hover:shadow-2xl hover:shadow-blue-500/10 transition-all group">
+      {/* SIGNAL GRID */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {signals.map((s: any) => (
+          <div key={s.ticker} className="bg-[#080808] border border-white/5 p-8 rounded-[2rem] hover:border-blue-500/30 transition-all group">
+            
+            {/* TICKER & MANUAL ALPHA BADGE */}
             <div className="flex justify-between items-start mb-6">
               <div>
-                <h2 className="text-4xl font-black">{s.ticker}</h2>
-                <p className="text-[10px] text-slate-500 uppercase font-bold tracking-widest">{s.label}</p>
+                <h2 className="text-5xl font-black tracking-tighter italic group-hover:text-blue-400 transition-colors">
+                  {s.ticker}
+                </h2>
+                {s.is_manual_alpha && (
+                  <span className="bg-blue-500 text-[9px] font-black px-2 py-0.5 rounded-full uppercase mt-1 inline-block animate-pulse">
+                    Human Verified Alpha
+                  </span>
+                )}
               </div>
               <div className="text-right">
-                <span className="bg-blue-500/10 text-blue-400 px-3 py-1 rounded-md text-[10px] font-black">
-                  VOL_Z: {s.vol_z || '---'}
-                </span>
+                <p className="text-[10px] text-slate-500 font-black uppercase">Confidence</p>
+                <p className="text-3xl font-black text-white">{s.confidence}%</p>
               </div>
             </div>
 
-            <div className="space-y-6">
-              <div className="bg-slate-950/50 border border-slate-800 p-4 rounded-lg">
-                <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-1 font-bold">Plan Type</p>
-                <p className="text-xl font-bold text-white tracking-tight">{s.plan_type}</p>
+            {/* ALPHA HEATMAP (1:3 Reward/Risk) */}
+            <div className="mb-8">
+              <div className="flex justify-between text-[9px] font-black uppercase text-slate-600 mb-2">
+                <span>Structural Risk</span>
+                <span>Alpha Target (3.0x)</span>
               </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-blue-500/5 border border-blue-500/10 p-3 rounded-lg">
-                  <p className="text-[9px] text-blue-500/60 uppercase font-bold mb-1">Entry</p>
-                  <p className="text-lg font-mono font-bold text-blue-400 tracking-tighter">${s.entry?.price?.toFixed(2) || '---'}</p>
-                </div>
-                <div className="bg-red-500/5 border border-red-500/10 p-3 rounded-lg">
-                  <p className="text-[9px] text-red-500/60 uppercase font-bold mb-1">Stop Loss</p>
-                  <p className="text-lg font-mono font-bold text-red-400 tracking-tighter">${s.stop?.price?.toFixed(2) || '---'}</p>
-                </div>
-              </div>
-
-              {s.targets && s.targets.length > 0 && (
-                <div className="bg-green-500/5 border border-green-500/10 p-3 rounded-lg">
-                  <p className="text-[9px] text-green-500/60 uppercase font-bold mb-1">Target (TP)</p>
-                  <p className="text-lg font-mono font-bold text-green-400 tracking-tighter">${s.targets[0]?.price?.toFixed(2) || '---'}</p>
-                </div>
-              )}
-
-              <div className="pt-4 border-t border-slate-800">
-                <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-2 font-bold italic">Signal Metrics</p>
-                <div className="text-xs text-slate-400 grid grid-cols-2 gap-2">
-                  <span>RS vs SPY: {s.rs_vs_spy?.toFixed(2) || '---'}</span>
-                  <span>Vol Z: {s.vol_z?.toFixed(2) || '---'}</span>
-                </div>
+              <div className="h-4 w-full bg-white/5 rounded-full flex overflow-hidden p-1 border border-white/5">
+                <div className="h-full bg-red-600/40 rounded-l-full" style={{ width: '25%' }}></div>
+                <div className="w-1 bg-white/20"></div>
+                <div className="h-full bg-blue-600 rounded-r-full shadow-[0_0_20px_rgba(37,99,235,0.4)]" style={{ width: '70%' }}></div>
               </div>
             </div>
+
+            {/* MECHANICAL STATS */}
+            <div className="grid grid-cols-2 gap-4 border-t border-white/5 pt-6">
+              <div>
+                <p className="text-[10px] text-slate-500 uppercase font-bold">Position Size</p>
+                <p className="text-xl font-mono font-black text-emerald-400">{s.shares} <span className="text-[10px]">SHRS</span></p>
+              </div>
+              <div className="text-right">
+                <p className="text-[10px] text-slate-500 uppercase font-bold">Whale Fight (Vol Z)</p>
+                <p className="text-xl font-mono font-black text-blue-500">{s.vol_z}</p>
+              </div>
+            </div>
+
+            {/* BUY TARGET */}
+            <div className="mt-6 bg-white/5 p-4 rounded-2xl border border-white/5 text-center">
+              <p className="text-[10px] text-slate-400 uppercase font-bold mb-1">Exit Target</p>
+              <p className="text-2xl font-black text-white">${s.target}</p>
+            </div>
+
           </div>
         ))}
       </div>
-
-      {signals.length === 0 && (
-        <div className="text-center text-slate-400 mt-20">
-          <p className="text-lg">No signals found. Scanner will update Monday at 8:30 AM EST.</p>
-        </div>
-      )}
-    </div>
+    </main>
   );
 }
