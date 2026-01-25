@@ -1,82 +1,83 @@
-name: Alpha Terminal Daily Scan
+name: Daily Market Scan -> Publish JSON + Ingest Supabase
 
 on:
+  workflow_dispatch: {}
   schedule:
-    - cron: "30 13 * * 1-5"
-  workflow_dispatch:
+    - cron: "15 21 * * 1-5" # Weekdays 21:15 UTC (~4:15pm NY winter)
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-scan
+  cancel-in-progress: false
 
 jobs:
-  run-alpha:
+  scan:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
-      - name: Install dependencies
+      - name: Install Python deps
+        working-directory: market_ai_kit
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Execute Scan + Post to Ingest
-        env:name: Alpha Terminal Daily Scan
-
-on:
-  schedule:
-    - cron: "30 13 * * 1-5"
-  workflow_dispatch:
-
-jobs:
-  run-alpha:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-
-      - name: Install dependencies
+      - name: Run scan
+        working-directory: market_ai_kit
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          python -m scanner.run --config config.yaml
 
-      - name: Execute Scan + Post to Ingest
+      - name: Verify payload exists
+        run: |
+          ls -lah market_ai_kit/output || true
+          test -f market_ai_kit/output/full_scan_payload.json
+
+      - name: Ingest scan into Supabase (via Vercel API)
         env:
-          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
-          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
-          ALPACA_API_BASE_URL: https://paper-api.alpaca.markets
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-          INGEST_URL: ${{ secrets.INGEST_URL }}
           INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
         run: |
-          mkdir -p market_ai_kit/output
-          python -m market_ai_kit.scanner.run --config market_ai_kit/config.yaml
-          ls -la market_ai_kit/output || true
-          test -f market_ai_kit/output/full_scan_payload.json
-          curl -sS -X POST "$INGEST_URL" \
+          set -e
+          if [ -z "$INGEST_TOKEN" ]; then
+            echo "Missing secret INGEST_TOKEN"
+            exit 1
+          fi
+          curl -sS -X POST "https://alpha-terminal-eight.vercel.app/api/ingest-scan" \
             -H "Content-Type: application/json" \
-            -H "x-ingest-token: $INGEST_TOKEN" \
-            --data-binary @market_ai_kit/output/full_scan_payload.json
+            -H "Authorization: Bearer $INGEST_TOKEN" \
+            --data-binary "@market_ai_kit/output/full_scan_payload.json"
 
-          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
-          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
-          ALPACA_API_BASE_URL: https://paper-api.alpaca.markets
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-          INGEST_URL: ${{ secrets.INGEST_URL }}
-          INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
+      - name: Copy JSON into public/data
         run: |
-          mkdir -p market_ai_kit/output
-          python -m market_ai_kit.scanner.run --config market_ai_kit/config.yaml
-          ls -la market_ai_kit/output || true
-          test -f market_ai_kit/output/full_scan_payload.json
-          curl -sS -X POST "$INGEST_URL" \
-            -H "Content-Type: application/json" \
-            -H "x-ingest-token: $INGEST_TOKEN" \
-            --data-binary @market_ai_kit/output/full_scan_payload.json
+          set -e
+          mkdir -p public/data
+          cp market_ai_kit/output/industries.json public/data/industries.json
+          cp market_ai_kit/output/early.json public/data/early.json
+          cp market_ai_kit/output/ready.json public/data/ready.json
+          cp market_ai_kit/output/watch.json public/data/watch.json
+          cp market_ai_kit/output/ticker_indicator_profiles.json public/data/ticker_indicator_profiles.json
+
+      - name: Commit and push if changed (same branch)
+        run: |
+          set -e
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          git config user.name "alpha-terminal-bot"
+          git config user.email "alpha-terminal-bot@users.noreply.github.com"
+          git add public/data/*.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Daily scan: update published JSON"
+          git push origin "HEAD:${BRANCH}"
