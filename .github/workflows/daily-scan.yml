@@ -2,16 +2,14 @@ name: Alpha Terminal Daily Scan
 
 on:
   schedule:
-    - cron: "30 13 * * 1-5"  # 8:30 AM EST
+    - cron: "30 13 * * 1-5"
   workflow_dispatch:
 
 jobs:
   run-alpha:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -23,7 +21,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Execute Scan + Post to Ingest
+      - name: Execute Scan + Post
         env:
           ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
           ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
@@ -34,14 +32,9 @@ jobs:
           INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
         run: |
           mkdir -p market_ai_kit/output
-
           python -m market_ai_kit.scanner.run --config market_ai_kit/config.yaml
-
-          echo "=== output files ==="
           ls -la market_ai_kit/output || true
-
           test -f market_ai_kit/output/full_scan_payload.json
-
           curl -sS -X POST "$INGEST_URL" \
             -H "Content-Type: application/json" \
             -H "x-ingest-token: $INGEST_TOKEN" \
