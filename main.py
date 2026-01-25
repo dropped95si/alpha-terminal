@@ -1,6 +1,7 @@
 import yaml
 from datetime import datetime, timezone
-from scanner import data, indicators, learner, fib, risk_engine
+from market_ai_kit.scanner import data, indicators, learner, fib
+
 
 def _analyze_ticker(ticker: str, cfg: dict, account_equity: float = 100000):
     # 1. Fetch 3-year history (Learning from the past)

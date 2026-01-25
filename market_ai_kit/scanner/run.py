@@ -16,6 +16,7 @@ from .utils import write_json
 from .scorer import relative_strength
 from .auto_tune import tune_thresholds
 from .report import write_report
+from .probability_engine import score_card, load_weights
 
 
 def _industry_rank(cfg: Dict) -> List[Dict]:
@@ -179,6 +180,7 @@ def run(cfg_path: str) -> None:
         # emerging score
         rs = relative_strength(df, spy, lookback_days=int(cfg["rules"]["early_rs_lookback_days"]))
         vol_z = float(d["vol_z"].iloc[-1]) if "vol_z" in d.columns else 0.0
+        atr_14 = float(d["atr_14"].iloc[-1]) if "atr_14" in d.columns else 0.0
 
         # FV (Fair Value) zone
         trigger = float(rng["range_high"])
@@ -202,6 +204,8 @@ def run(cfg_path: str) -> None:
             "ticker": t,
             "price": round(price, 2),
             "avg_dollar_volume": int(adv),
+            "adv_20": int(adv),
+            "atr_14": round(atr_14, 4),
             "rs_60d_vs_spy": round(rs, 4),
             "vol_z": round(vol_z, 2),
             "fv": {"vwap_20": round(fv, 2), "low": round(fv_low, 2), "high": round(fv_high, 2)},
@@ -213,6 +217,30 @@ def run(cfg_path: str) -> None:
             "labels": [],
             "as_of": now,
         }
+
+
+        # --- Dynamic Probability + Stop Ladder (non-static) ---
+        w = load_weights()
+        scored = score_card(card, weights=w)
+
+        # Embed AI outputs INSIDE existing JSON columns (entry/stop) so DB insert won't break
+        plan_ai = card.get("plan", {}) or {}
+        entry_ai = plan_ai.get("entry", {}) or {}
+        stop_ai = plan_ai.get("exit_if_wrong", {}) or {}
+
+        entry_ai["ai"] = {
+            "probability": scored.get("probability"),
+            "confidence": scored.get("confidence"),
+            "why": scored.get("why"),
+            "chosen_stop": scored.get("chosen_stop"),
+            "stop_ladder": scored.get("stop_ladder"),
+            "runtime_ms": scored.get("runtime_ms"),
+        }
+
+        stop_ai["ai"] = entry_ai["ai"]
+        plan_ai["entry"] = entry_ai
+        plan_ai["exit_if_wrong"] = stop_ai
+        card["plan"] = plan_ai
 
         if t in uni["china_watchlist"]:
             card["labels"].append("CHINA_HIGH_HEADLINE_RISK")
@@ -269,7 +297,7 @@ def run(cfg_path: str) -> None:
             "label": label,
             "plan_type": entry.get("type", "unknown"),
             "entry": entry,
-            "stop": stop,
+            "stop": {"price": stop.get("stop"), **stop},
             "targets": targets,
             "rs_vs_spy": card.get("rs_60d_vs_spy"),
             "vol_z": card.get("vol_z"),
@@ -285,15 +313,16 @@ def run(cfg_path: str) -> None:
     all_cards.extend(watch[:max_cards])
 
     full_payload = {
-        "as_of": now,
-        "source": "yahoo",
-        "interval": interval,
-        "history_years": years,
-        "auto_thresholds": auto_meta,
+        "scan_runs": {
+            "as_of": now,
+            # provider intent; your data adapter should be Polygon/Alpaca primary, Yahoo fallback
+            "source": "scanner",
+            "interval": interval,
+            "history_years": years,
+            "auto_thresholds": auto_meta,
+        },
         "signals": [_to_signal(c) for c in all_cards],
     }
-
-    write_json(full_payload, "output/full_scan_payload.json")
 
 
 def main() -> None:
