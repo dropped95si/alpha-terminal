@@ -25,3 +25,9 @@ horizons:
 sentiment:
   enabled: true
   weight_impact: 0.20        # Drag confidence by 20% if news is 'Panic'
+# Local data
+Sober Rail/
+market_ai_kit/scanner/__pycache__/
+**/__pycache__/
+*.pyc
+
