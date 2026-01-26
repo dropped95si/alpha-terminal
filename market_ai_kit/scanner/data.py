@@ -6,10 +6,29 @@ import yfinance as yf
 
 # New imports for V2 Connectors
 import os
-from supabase import create_client, Client
 
 def fetch_ohlcv(ticker: str, years: int = 3, interval: str = "1d") -> Optional[pd.DataFrame]:
-    period = f"{years}y"
+    """Fetch OHLCV with a *best-effort* period/interval pairing.
+
+    yfinance has strict limits on intraday intervals. We keep this dynamic
+    and avoid hard failures by capping lookback when needed.
+
+    No trading rules live here. This is just data access.
+    """
+    # yfinance intraday max lookback constraints (approx)
+    intraday = interval.endswith('m') or interval.endswith('h')
+    if intraday:
+        # Conservative caps that work across most tickers
+        # 1m/2m: ~7d, 5m/15m/30m: ~60d, 60m/90m/1h: ~730d (varies)
+        caps_days = {
+            '1m': 7, '2m': 60, '5m': 60, '15m': 60, '30m': 60,
+            '60m': 730, '90m': 730, '1h': 730
+        }
+        days = min(int(years) * 365, caps_days.get(interval, 60))
+        period = f"{max(1, days)}d"
+    else:
+        period = f"{int(years)}y"
+
     df = yf.download(ticker, period=period, interval=interval, auto_adjust=False, group_by="column", progress=False)
     if df is None or df.empty:
         return None
@@ -53,7 +72,8 @@ def check_manual_alpha(ticker: str) -> bool:
     try:
         url = os.environ.get("SUPABASE_URL")
         key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
-        supabase: Client = create_client(url, key)
+        from supabase import create_client
+        supabase = create_client(url, key)
         
         # Check the 'candidates' table for your manual flag
         res = supabase.table("candidates").select("is_manual_alpha").eq("ticker", ticker).execute()
