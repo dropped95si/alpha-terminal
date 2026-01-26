@@ -1,34 +1,59 @@
-name: Alpha Terminal Daily Scan
+name: Daily Signal Scan
+
 on:
   schedule:
-    - cron: '30 13 * * 1-5' # 8:30 AM EST
-  workflow_dispatch:
+    - cron: '0 9 * * 1-5'  # 9am UTC, Monday-Friday
+  workflow_dispatch:  # Manual trigger
+
 jobs:
-  run-alpha:
+  scan-and-upload:
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Python
-        uses: actions/setup-python@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
-      - name: Install
-        run: pip install -r requirements.txt
-      - name: Execute
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install supabase
+      
+      - name: Run scan & upload to Supabase
         env:
-          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
-          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
-          ALPACA_API_BASE_URL: https://paper-api.alpaca.markets
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-          HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
-          INGEST_URL: ${{ secrets.INGEST_URL }}
-          INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
-        run: cd market_ai_kit
-          python -m scanner.run --config config.yaml
-          cd ..
-          test -f market_ai_kit/output/full_scan_payload.json
-          curl -sS -X POST "$INGEST_URL" \
-            -H "Content-Type: application/json" \
-            -H "x-ingest-token: $INGEST_TOKEN" \
-            --data-binary @market_ai_kit/output/full_scan_payload.json
+          SUPABASE_URL: ${{ https://gyilkjvdglnzbzioyqze.supabase.co }}
+          SUPABASE_KEY: ${{ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd5aWxranZkZ2xuemJ6aW95cXplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg3ODM2NTksImV4cCI6MjA4NDM1OTY1OX0.Zk2GQma5RBJPNR1u_3xiwVeXzptLpZPFOyh7uCIOMXg }}
+        run: |
+          python scripts/upload_signals.py
+      
+      - name: Send notification (optional)
+        if: always()
+        run: |
+          echo "✅ Daily scan completed"
+```
+
+---
+
+## **Step 3: Add Supabase Secrets to GitHub**
+
+1. Go: **https://github.com/dropped95si/alpha-terminal**
+2. Settings → **Secrets and variables** → **Actions**
+3. Click **"New repository secret"**
+
+Add these:
+
+**Secret 1: SUPABASE_URL**
+```
+Name: SUPABASE_URL
+Value: (paste from Supabase → Settings → API → Project URL)
+```
+
+**Secret 2: SUPABASE_KEY**
+```
+Name: SUPABASE_KEY
+Value: (paste from Supabase → Settings → API → anon public)
