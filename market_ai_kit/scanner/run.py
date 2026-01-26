@@ -16,6 +16,7 @@ from .utils import write_json
 from .scorer import relative_strength
 from .auto_tune import tune_thresholds
 from .report import write_report
+from .v22_enhanced_wrapper import EnhancedV22Engine
 
 
 def _industry_rank(cfg: Dict) -> List[Dict]:
@@ -147,6 +148,9 @@ def run(cfg_path: str) -> None:
 
     now = datetime.now(timezone.utc).isoformat().replace("+00:00","Z")
 
+    # v2.2 probability engine (pure math, no rules)
+    engine = EnhancedV22Engine()
+
     for t in tickers:
         df = fetch_ohlcv(t, years=years, interval=interval)
         if df is None or len(df) < 220:
@@ -214,6 +218,31 @@ def run(cfg_path: str) -> None:
             "as_of": now,
         }
 
+        # --- v2.2: level-to-level probability (Day/Swing/Long) ---
+        try:
+            odds = engine.score_with_enhancements(card, config)
+            card["probability_v22"] = odds
+
+            # Put a compact summary where UI/DB already look: entry.ai
+            plan_ai = card.get("plan", {}) or {}
+            entry_ai = (plan_ai.get("entry", {}) or {})
+            entry_ai.setdefault("ai", {})
+            entry_ai["ai"]["modes"] = odds.get("modes", {})
+            # convenience: pick swing as default headline
+            swing = (odds.get("modes", {}) or {}).get("swing")
+            if swing:
+                entry_ai["ai"]["probability"] = swing.get("probs", {}).get("p_up")
+                entry_ai["ai"]["confidence"] = swing.get("confidence")
+                entry_ai["ai"]["next_up"] = swing.get("next_up")
+                entry_ai["ai"]["next_down"] = swing.get("next_down")
+                entry_ai["ai"]["regime"] = swing.get("regime")
+
+            plan_ai["entry"] = entry_ai
+            card["plan"] = plan_ai
+        except Exception as _e:
+            # never break the scan if the probability module errors
+            pass
+
         if t in uni["china_watchlist"]:
             card["labels"].append("CHINA_HIGH_HEADLINE_RISK")
 
@@ -277,6 +306,10 @@ def run(cfg_path: str) -> None:
             "pivots": card.get("pivots"),
             "fib": card.get("fib"),
             "learned_top_rules": card.get("learned_top_rules"),
+            # v2.2 headline values (swing mode default)
+            "probability": (entry.get("ai", {}) or {}).get("probability"),
+            "confidence": (entry.get("ai", {}) or {}).get("confidence"),
+            "why": (entry.get("ai", {}) or {}).get("regime"),
         }
 
     all_cards: List[Dict] = []
@@ -285,12 +318,21 @@ def run(cfg_path: str) -> None:
     all_cards.extend(watch[:max_cards])
 
     full_payload = {
+        "scan_runs": {
+            "as_of": now,
+            "source": "scanner",
+            "interval": interval,
+            "history_years": years,
+            "auto_thresholds": auto_meta,
+        },
+        "signals": [_to_signal(c) for c in all_cards],
+
+        # backwards-compatible mirror
         "as_of": now,
-        "source": "yahoo",
+        "source": "scanner",
         "interval": interval,
         "history_years": years,
         "auto_thresholds": auto_meta,
-        "signals": [_to_signal(c) for c in all_cards],
     }
 
     write_json(full_payload, "output/full_scan_payload.json")
