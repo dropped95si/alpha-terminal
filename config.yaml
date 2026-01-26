@@ -1,0 +1,21 @@
+﻿universe:
+  tickers:
+    - NVDA
+    - TSLA
+    - AMD
+    - AAPL
+    - MSFT
+
+scan:
+  history_years: 10
+  interval: 1d
+  batch_size: 5
+
+output:
+  db_table: signals
+  save_json: true
+  json_path: output/
+
+supabase:
+  url: https://gyilkjvdglnzbzioyqze.supabase.co
+  key: sb_publishable_s0VA25wZ-nW5iyZK9LGqoA_MIjWG1jz
