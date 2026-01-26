@@ -79,6 +79,20 @@ export default function MomDashboard() {
                 </div>
               </div>
 
+              
+              {/* AI Odds (v2.2) - probabilities only, no trade commands */}
+              {s.entry?.ai?.modes?.swing && (
+                <div className="bg-purple-500/5 border border-purple-500/10 p-3 rounded-lg">
+                  <p className="text-[9px] text-purple-500/60 uppercase font-bold mb-1">AI Odds (Swing)</p>
+                  <div className="text-xs text-slate-300 grid grid-cols-2 gap-2">
+                    <span>P(up): {(s.entry.ai.modes.swing.probs?.p_up * 100).toFixed(0)}%</span>
+                    <span>P(down): {(s.entry.ai.modes.swing.probs?.p_down * 100).toFixed(0)}%</span>
+                    <span>Chop: {(s.entry.ai.modes.swing.probs?.p_chop * 100).toFixed(0)}%</span>
+                    <span>Conf: {(s.entry.ai.modes.swing.confidence * 100).toFixed(0)}%</span>
+                  </div>
+                </div>
+              )}
+
               {s.targets && s.targets.length > 0 && (
                 <div className="bg-green-500/5 border border-green-500/10 p-3 rounded-lg">
                   <p className="text-[9px] text-green-500/60 uppercase font-bold mb-1">Target (TP)</p>
