@@ -1,0 +1,30 @@
+name: Daily Signal Scan
+
+on:
+  schedule:
+    - cron: '0 9 * * 1-5'  # 9am Mon-Fri
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install deps
+        run: pip install -r requirements.txt
+      
+      - name: Run audit CLI
+        run: python -m market_ai_kit.scanner.audit_v22 --tickers NVDA TSLA AMD AAPL MSFT --json > signals.json
+      
+      - name: Push to Supabase
+        env:
+          SUPABASE_URL: ${{ https://gyilkjvdglnzbzioyqze.supabase.co }}
+          SUPABASE_KEY: ${{ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd5aWxranZkZ2xuemJ6aW95cXplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg3ODM2NTksImV4cCI6MjA4NDM1OTY1OX0.Zk2GQma5RBJPNR1u_3xiwVeXzptLpZPFOyh7uCIOMXg }}
+        run: python scripts/upload_signals.py signals.json
+  
