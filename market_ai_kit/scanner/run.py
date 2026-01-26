@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 from datetime import datetime, timezone
 from typing import Dict, List
 
@@ -16,7 +17,24 @@ from .utils import write_json
 from .scorer import relative_strength
 from .auto_tune import tune_thresholds
 from .report import write_report
-from .probability_engine import score_card, load_weights
+from .probability_v22 import ProbabilityEngineV22
+from .feature_engine import FeatureEngine
+from .mode_defs import MODES
+
+
+def _cfg_get(cfg: dict, keys: list[str], default):
+    """Safe nested-get for YAML config.
+
+    The repo has multiple config variants across v1/v2/patches.
+    This prevents KeyError when config evolves or when you run a
+    branch with a different config.yaml.
+    """
+    cur = cfg
+    for k in keys:
+        if not isinstance(cur, dict) or k not in cur:
+            return default
+        cur = cur[k]
+    return cur
 
 
 def _industry_rank(cfg: Dict) -> List[Dict]:
@@ -102,11 +120,15 @@ def run(cfg_path: str) -> None:
     with open(cfg_path, "r", encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
 
-    years = int(cfg["scan"]["history_years"])
-    interval = cfg["scan"]["interval"]
-    min_price = float(cfg["scan"]["min_price"])
-    min_dollar_vol = float(cfg["scan"]["min_avg_dollar_volume"])
-    max_cards = int(cfg["scan"]["max_cards_total"])
+    # Always ensure output exists (both local + GitHub Actions)
+    os.makedirs("output", exist_ok=True)
+
+    # Configs differ across branches/patches. Never hard-crash on missing keys.
+    years = int(_cfg_get(cfg, ["scan", "history_years"], 3))
+    interval = _cfg_get(cfg, ["scan", "interval"], "1d")
+    min_price = float(_cfg_get(cfg, ["scan", "min_price"], 1.0))
+    min_dollar_vol = float(_cfg_get(cfg, ["scan", "min_avg_dollar_volume"], 5_000_000))
+    max_cards = int(_cfg_get(cfg, ["scan", "max_cards_total"], 12))
 
     uni = build_universe(cfg)
     tickers = uni["scan_list"]
@@ -126,7 +148,10 @@ def run(cfg_path: str) -> None:
         d0 = add_indicators(df0).dropna()
         if d0.empty:
             continue
-        rng0 = recent_range(df0, lookback=int(cfg["rules"]["ready_breakout_lookback_days"]))
+        rng0 = recent_range(
+            df0,
+            lookback=int(_cfg_get(cfg, ["rules", "ready_breakout_lookback_days"], 20))
+        )
         volz0 = float(d0["vol_z"].iloc[-1]) if "vol_z" in d0.columns else 0.0
         atr0 = float(d0["atr_14"].iloc[-1]) if "atr_14" in d0.columns else 0.0
         preview.append({"ticker": t, "price": float(p0), "vol_z": float(volz0), "atr": float(atr0),
@@ -137,7 +162,7 @@ def run(cfg_path: str) -> None:
     # benchmark for relative strength
     spy = fetch_ohlcv("SPY", years=years, interval=interval)
     if spy is None or len(spy) < 200:
-        raise RuntimeError("Failed to download SPY benchmark from Yahoo")
+        raise RuntimeError("Failed to download SPY benchmark from configured data providers (Polygon/Alpaca)")
 
     industries = _industry_rank(cfg)
 
@@ -147,6 +172,9 @@ def run(cfg_path: str) -> None:
     profiles: List[Dict] = []
 
     now = datetime.now(timezone.utc).isoformat().replace("+00:00","Z")
+
+    # v2.2 probability engine (pure math, no rules)
+    prob_engine = ProbabilityEngineV22()
 
     for t in tickers:
         df = fetch_ohlcv(t, years=years, interval=interval)
@@ -165,7 +193,10 @@ def run(cfg_path: str) -> None:
         if d.empty:
             continue
 
-        rng = recent_range(df, lookback=int(cfg["rules"]["ready_breakout_lookback_days"]))
+        rng = recent_range(
+            df,
+            lookback=int(_cfg_get(cfg, ["rules", "ready_breakout_lookback_days"], 20)),
+        )
         pivots = pivot_levels(df)
 
         # fib
@@ -178,9 +209,12 @@ def run(cfg_path: str) -> None:
         profiles.append({"ticker": t, "as_of": now, **prof})
 
         # emerging score
-        rs = relative_strength(df, spy, lookback_days=int(cfg["rules"]["early_rs_lookback_days"]))
+        rs = relative_strength(
+            df,
+            spy,
+            lookback_days=int(_cfg_get(cfg, ["rules", "early_rs_lookback_days"], 60)),
+        )
         vol_z = float(d["vol_z"].iloc[-1]) if "vol_z" in d.columns else 0.0
-        atr_14 = float(d["atr_14"].iloc[-1]) if "atr_14" in d.columns else 0.0
 
         # FV (Fair Value) zone
         trigger = float(rng["range_high"])
@@ -197,15 +231,16 @@ def run(cfg_path: str) -> None:
 
         # EARLY = RS improving OR near breakout, but not ready yet
         is_near = price >= trigger * near_pct
-        is_early = ((rs >= float(cfg["rules"]["early_rs_min"])) or is_near) and not is_ready
+        is_early = (
+            (rs >= float(_cfg_get(cfg, ["rules", "early_rs_min"], 0.15)))
+            or is_near
+        ) and not is_ready
         plan = _entry_plan(d, pivots, rng, top_rules, cfg)
 
         card = {
             "ticker": t,
             "price": round(price, 2),
             "avg_dollar_volume": int(adv),
-            "adv_20": int(adv),
-            "atr_14": round(atr_14, 4),
             "rs_60d_vs_spy": round(rs, 4),
             "vol_z": round(vol_z, 2),
             "fv": {"vwap_20": round(fv, 2), "low": round(fv_low, 2), "high": round(fv_high, 2)},
@@ -219,29 +254,51 @@ def run(cfg_path: str) -> None:
         }
 
 
-        # --- Dynamic Probability + Stop Ladder (non-static) ---
-        w = load_weights()
-        scored = score_card(card, weights=w)
 
-        # Embed AI outputs INSIDE existing JSON columns (entry/stop) so DB insert won't break
-        plan_ai = card.get("plan", {}) or {}
-        entry_ai = plan_ai.get("entry", {}) or {}
-        stop_ai = plan_ai.get("exit_if_wrong", {}) or {}
-
-        entry_ai["ai"] = {
-            "probability": scored.get("probability"),
-            "confidence": scored.get("confidence"),
-            "why": scored.get("why"),
-            "chosen_stop": scored.get("chosen_stop"),
-            "stop_ladder": scored.get("stop_ladder"),
-            "runtime_ms": scored.get("runtime_ms"),
+        # --- Institutional-grade probability surfaces (NO hard rules) ---
+        # Build minimal level set from current structure
+        levels = {
+            "price": card["price"],
+            "up": [card["range"]["high"]],
+            "down": [card["range"]["low"]],
         }
+        # Enrich with nearest pivots if present
+        try:
+            res = card.get("pivots", {}).get("resistance") or []
+            sup = card.get("pivots", {}).get("support") or []
+            if res: levels["up"].append(float(res[0]))
+            if sup: levels["down"].append(float(sup[0]))
+        except Exception:
+            pass
 
-        stop_ai["ai"] = entry_ai["ai"]
+        modes_out = {}
+        for mode_name, mdef in MODES.items():
+            features = {}
+            # Compute features from each interval in the mode stack
+            for interval_i, prefix in mdef.intervals:
+                df_i = fetch_ohlcv(t, years=years, interval=interval_i)
+                if df_i is None or len(df_i) < 80:
+                    continue
+                snap = feat_engine.compute(df_i, prefix=prefix)
+                features.update(snap.features)
+
+            # Long mode: derive weekly/monthly features from daily bars
+            if mode_name == "long":
+                df_d = fetch_ohlcv(t, years=years, interval="1d")
+                if df_d is not None and len(df_d) > 260:
+                    w = df_d.resample("W-FRI").agg({"open":"first","high":"max","low":"min","close":"last","volume":"sum"}).dropna()
+                    m = df_d.resample("M").agg({"open":"first","high":"max","low":"min","close":"last","volume":"sum"}).dropna()
+                    features.update(feat_engine.compute(w, prefix="w1").features)
+                    features.update(feat_engine.compute(m, prefix="m1").features)
+
+            modes_out[mode_name] = prob_engine.score(features, levels, mode=mode_name)
+
+        # Store into plan.entry.ai to stay compatible with existing Supabase JSON columns
+        plan_ai = card.get("plan", {}) or {}
+        entry_ai = (plan_ai.get("entry", {}) or {})
+        entry_ai["ai"] = {"modes": modes_out}
         plan_ai["entry"] = entry_ai
-        plan_ai["exit_if_wrong"] = stop_ai
         card["plan"] = plan_ai
-
         if t in uni["china_watchlist"]:
             card["labels"].append("CHINA_HIGH_HEADLINE_RISK")
 
@@ -249,7 +306,7 @@ def run(cfg_path: str) -> None:
             card["labels"].append("READY_CONFIRMED")
             ready.append(card)
         elif is_early:
-            card["labels"].append(cfg["mom_safe"]["early_label"])
+            card["labels"].append(_cfg_get(cfg, ["mom_safe", "early_label"], "EARLY_WATCH_ONLY"))
             early.append(card)
         else:
             card["labels"].append("WATCH")
@@ -297,7 +354,7 @@ def run(cfg_path: str) -> None:
             "label": label,
             "plan_type": entry.get("type", "unknown"),
             "entry": entry,
-            "stop": {"price": stop.get("stop"), **stop},
+            "stop": stop,
             "targets": targets,
             "rs_vs_spy": card.get("rs_60d_vs_spy"),
             "vol_z": card.get("vol_z"),
@@ -305,6 +362,10 @@ def run(cfg_path: str) -> None:
             "pivots": card.get("pivots"),
             "fib": card.get("fib"),
             "learned_top_rules": card.get("learned_top_rules"),
+            # v2.2 headline values (swing mode default)
+            "probability": (entry.get("ai", {}) or {}).get("probability"),
+            "confidence": (entry.get("ai", {}) or {}).get("confidence"),
+            "why": (entry.get("ai", {}) or {}).get("regime"),
         }
 
     all_cards: List[Dict] = []
@@ -315,14 +376,22 @@ def run(cfg_path: str) -> None:
     full_payload = {
         "scan_runs": {
             "as_of": now,
-            # provider intent; your data adapter should be Polygon/Alpaca primary, Yahoo fallback
             "source": "scanner",
             "interval": interval,
             "history_years": years,
             "auto_thresholds": auto_meta,
         },
         "signals": [_to_signal(c) for c in all_cards],
+
+        # backwards-compatible mirror
+        "as_of": now,
+        "source": "scanner",
+        "interval": interval,
+        "history_years": years,
+        "auto_thresholds": auto_meta,
     }
+
+    write_json(full_payload, "output/full_scan_payload.json")
 
 
 def main() -> None:

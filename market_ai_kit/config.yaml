@@ -5,9 +5,15 @@ universe:
 scan:
   history_years: 3
   interval: 1d
+  # optional filter; run.py will default safely if missing
+  min_price: 1
   min_avg_dollar_volume: 50000000
   max_cards_total: 12
 rules:
+  # lookbacks used by scanner logic (safe defaults; can be tuned/learned)
+  ready_breakout_lookback_days: 20
+  early_rs_lookback_days: 60
+  early_rs_min: 0.15
   # The 1:3 Sober Rail
   target_r_multiple_1: 1.5
   target_r_multiple_2: 4.5  # Hunt for 3x the risk distance
@@ -17,3 +23,7 @@ sentiment:
   panic_threshold: -0.4
   euphoria_threshold: 0.6
   weight_impact: 0.2        # Drag confidence down by 20% if panic is detected
+
+mom_safe:
+  # label used by scanner when a name is early-but-not-ready
+  early_label: EARLY_WATCH_ONLY

@@ -1,0 +1,67 @@
+system:
+  mode: "production"
+  timezone: "US/Eastern"
+
+# DYNAMIC FEATURE DEFINITIONS (The "Senses")
+# The system learns how much these matter via Spearman Correlation.
+features:
+  - name: "rsi"
+    kind: "rsi"
+    length: 14
+  - name: "vol_z"
+    kind: "zscore"
+    length: 20
+  - name: "trend_eff"
+    kind: "er"        # Efficiency Ratio (Kama)
+    length: 10
+  - name: "atr_norm"
+    kind: "atr_norm"  # Normalized Volatility
+    length: 14
+  - name: "natr"
+    kind: "natr"
+    length: 14
+
+# STATISTICAL LEARNING (The "Cortex")
+learning:
+  decay_rate: 0.95          # 95% Memory / 5% New Data
+  regime_window: 200        # SMA length to define Bull/Bear regimes
+  min_correlation: 0.05     # Noise floor
+  correlation_method: "spearman"
+
+# WHALE SIEVE (Institutional Validation)
+whale_sieve:
+  block_thresholds: 
+    mega: 500000
+    large: 100000
+    medium: 50000
+    small: 10000
+  conviction_weights:
+    mega: 3.0
+    large: 2.0
+    medium: 1.0
+    small: 0.3
+  impact: 
+    confirm: 0.20
+    watch: 0.05
+    deny: -0.15
+
+# ADAPTIVE WEIGHTING (Credibility)
+adaptive_weighting:
+  weights:
+    volume_trend: 0.15
+    structure_break: 0.15
+    confluence: 0.20
+    trend_strength: 0.10
+    volatility_regime: 0.10
+    level_proximity: 0.10
+    pattern_quality: 0.10
+    whale_backing: 0.10
+  thresholds:
+    strong_buy: 0.75
+    buy: 0.60
+
+# RISK ENGINE
+risk_engine:
+  account_size: 100000
+  risk_per_trade: 0.015
+  max_allocation: 0.20
