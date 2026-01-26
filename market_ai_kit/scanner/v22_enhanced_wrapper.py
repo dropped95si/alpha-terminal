@@ -1,8 +1,8 @@
-
 from typing import Any, Dict
-from .probability_v22 import ProbabilityEngineV22
-from .whale_sieve import WhaleValidator, apply_whale_boost
-from .adaptive_weighting import AdaptiveWeightingSystem, apply_credibility_multiplier
+
+from market_ai_kit.scanner.probability_v22 import ProbabilityEngineV22
+from market_ai_kit.scanner.whale_sieve import WhaleValidator, apply_whale_boost
+from market_ai_kit.scanner.adaptive_weighting import AdaptiveWeightingSystem, apply_credibility_multiplier
 
 
 class EnhancedV22Engine:
@@ -16,7 +16,7 @@ class EnhancedV22Engine:
     def score_with_enhancements(
         self,
         card: Dict[str, Any],
-        config: Dict[str, Any]
+        config: Dict[str, Any] = None
     ) -> Dict[str, Any]:
         """
         Score card through full pipeline:
@@ -26,26 +26,22 @@ class EnhancedV22Engine:
         4. Return enhanced result
         """
         
-        # Step 1: Get v22 odds for all modes
-        v22_result = self.v22.score(card, config)
+        # score_card() only takes card, not config
+        v22_result = self.v22.score_card(card)
         
-        # Use swing mode as base (most reliable for 5-20 bars)
         swing = v22_result.get("swing", {})
         base_prob = swing.get("probs", {}).get("p_up", 0.5)
         
-        # Step 2: Whale validation (NEW)
         whale_result = self.whale_validator.validate_whale_flow(card)
         whale_boosted = apply_whale_boost(base_prob, whale_result)
         prob_after_whale = whale_boosted['final_probability']
         
-        # Step 3: Credibility check (NEW)
         credibility_result = self.credibility_system.assess_credibility(card)
         final_result = apply_credibility_multiplier(
             prob_after_whale,
             credibility_result
         )
         
-        # Build enhanced output
         enhanced_probs = swing.get("probs", {})
         enhanced_probs["p_up"] = final_result['final_probability']
         
@@ -64,5 +60,3 @@ class EnhancedV22Engine:
             "whale_verdict": whale_result.get("verdict"),
             "credibility_score": credibility_result.get("credibility", 0.0),
         }
-PYEOF
-```
