@@ -4,3 +4,4 @@ python-dotenv
 pandas
 ta-lib
 pyyaml
+supabase==2.0.0
