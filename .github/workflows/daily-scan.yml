@@ -35,25 +35,3 @@ jobs:
         if: always()
         run: |
           echo "✅ Daily scan completed"
-```
-
----
-
-## **Step 3: Add Supabase Secrets to GitHub**
-
-1. Go: **https://github.com/dropped95si/alpha-terminal**
-2. Settings → **Secrets and variables** → **Actions**
-3. Click **"New repository secret"**
-
-Add these:
-
-**Secret 1: SUPABASE_URL**
-```
-Name: SUPABASE_URL
-Value: (paste from Supabase → Settings → API → Project URL)
-```
-
-**Secret 2: SUPABASE_KEY**
-```
-Name: SUPABASE_KEY
-Value: (paste from Supabase → Settings → API → anon public)
